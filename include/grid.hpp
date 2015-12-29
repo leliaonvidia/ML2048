@@ -11,6 +11,7 @@
 
 #include "utils.hpp"
 #include <vector>
+#include "gtest/gtest_prod.h"
 
 class grid
 {
@@ -54,6 +55,14 @@ public:
     static int size();
 
 private:
+	FRIEND_TEST(grid_reset, test);
+	FRIEND_TEST(grid_is_outside, boundaryTest);
+	FRIEND_TEST(grid_is_outside, equivalentClass);
+	FRIEND_TEST(grid_is_outside, edgeTest);
+	FRIEND_TEST(grid_get, boundaryTest);
+	FRIEND_TEST(grid_set, boundaryTest);
+	FRIEND_TEST(grid_move, equivalenceClass);
+	FRIEND_TEST(grid_merge, equivalenceClass);
     // Sets count values of 2 onto the board in an empty slot
     void init(int count);
 
