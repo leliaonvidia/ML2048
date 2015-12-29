@@ -17,6 +17,9 @@ obj/%.o: src/%.cpp ${DEPS}
 bin/%_unittest: obj/%.o obj/%_unittest.o ${GTEST_LIBS} ${OBJS}
 	${CXX} ${CXXFLAGS} -o $@ $^ ${LDFLAGS}
 
+run: bin/grid_unittest
+	./bin/grid_unittest
+
 .PHONY: clean
 clean:
 	rm -f obj/*
