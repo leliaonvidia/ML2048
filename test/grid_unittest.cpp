@@ -89,53 +89,70 @@ TEST(grid_is_outside, edgeTest) {
 	EXPECT_EQ(true, gr.is_outside(grid_size, 1));
 }
 
+
+void setGrid(int grid[][grid_size],
+	int n0, int n1, int n2, int n3,
+	int n4, int n5, int n6, int n7,
+	int n8, int n9, int n10, int n11,
+	int n12, int n13, int n14, int n15)
+{
+	grid[0][0] = n0;
+	grid[0][1] = n1;
+	grid[0][2] = n2;
+	grid[0][3] = n3;
+	grid[1][0] = n4;
+	grid[1][1] = n5;
+	grid[1][2] = n6;
+	grid[1][3] = n7;
+	grid[2][0] = n8;
+	grid[2][1] = n9;
+	grid[2][2] = n10;
+	grid[2][3] = n11;
+	grid[3][0] = n12;
+	grid[3][1] = n13;
+	grid[3][2] = n14;
+	grid[3][3] = n15;
+}
+
 // action()
 TEST(grid_action, EquivalenceClass_WeakNormal) {
-	grid G, temp;
-	G.init(2);
-	temp = G;
 
 	direction north = direction::NORTH;
-	direction south = direction::SOUTH;
-	direction east = direction::EAST;
-	direction west = direction::WEST;
 
-	//north
-	if(temp.move(north) || temp.merge(north) || temp.move(north)) {
-		temp.init(round_slot_count);
-		temp.m_actions.push_back(north);
-		EXPECT_EQ(true, G.action(north));
-	}
-	else {
-		EXPECT_EQ(false, G.action(north));
-	}
-	//south
-	if(temp.move(south) || temp.merge(south) || temp.move(south)) {
-		temp.init(round_slot_count);
-        temp.m_actions.push_back(north);
-        EXPECT_EQ(true, G.action(north));   
-    }
-	else {
-		EXPECT_EQ(false, G.action(south));
-	}
-	//east
-	if(temp.move(east) || temp.merge(east) || temp.move(east)) {
-        temp.init(round_slot_count);
-        temp.m_actions.push_back(east);
-        EXPECT_EQ(true, G.action(east));
-    }
-	else {
-		EXPECT_EQ(false, G.action(east));
-	}
-	//west
-	if(temp.move(west) || temp.merge(west) || temp.move(west)) {
-        temp.init(round_slot_count);
-        temp.m_actions.push_back(west);
-        EXPECT_EQ(true, G.action(west));
-    }
-	else {
-		EXPECT_EQ(false, G.action(west));
-	}
+	grid G;
+
+	// Empty
+	setGrid(G.m_grid,
+		0, 0, 0, 0,
+		0, 0, 0, 0,
+		0, 0, 0, 0,
+		0, 0, 0, 0);
+	EXPECT_EQ(false, G.action(north));
+	
+	//Not Empty nor doing action
+	setGrid(G.m_grid,
+		2, 2, 2, 2,
+		0, 0, 0, 0,
+		0, 0, 0, 0,
+		0, 0, 0, 0);
+	EXPECT_EQ(false, G.action(north));
+
+	//Can move at first
+	setGrid(G.m_grid,
+		0, 2, 2, 2,
+		2, 0, 0, 0,
+		0, 0, 0, 0,
+		0, 0, 0, 0);
+	EXPECT_EQ(true, G.action(north));
+
+	
+	//Can't move at first but can merge
+	setGrid(G.m_grid,
+		2, 2, 2, 2,
+		2, 0, 0, 0,
+		0, 0, 0, 0,
+		0, 0, 0, 0);
+	EXPECT_EQ(true, G.action(north));
 }
 
 void set_all_one(int m_grid[grid_size][grid_size]) {
@@ -298,29 +315,6 @@ TEST(grid_largest, BoundaryValue_Robust) {
 	EXPECT_EQ(int_max, g.largest());	// U
 }
 
-void setGrid(int grid[][grid_size],
-	int n0, int n1, int n2, int n3,
-	int n4, int n5, int n6, int n7,
-	int n8, int n9, int n10, int n11,
-	int n12, int n13, int n14, int n15)
-{
-	grid[0][0] = n0;
-	grid[0][1] = n1;
-	grid[0][2] = n2;
-	grid[0][3] = n3;
-	grid[1][0] = n4;
-	grid[1][1] = n5;
-	grid[1][2] = n6;
-	grid[1][3] = n7;
-	grid[2][0] = n8;
-	grid[2][1] = n9;
-	grid[2][2] = n10;
-	grid[2][3] = n11;
-	grid[3][0] = n12;
-	grid[3][1] = n13;
-	grid[3][2] = n14;
-	grid[3][3] = n15;
-}
 
 // move()
 TEST(grid_move, equivalenceClass)
