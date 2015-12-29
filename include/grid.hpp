@@ -46,7 +46,7 @@ public:
     unsigned int score() const;
 
     // Find the largest
-    int largest() const;
+    int largest() const;//
 
     // Returns the actions the grid has performed
     std::vector<direction> actions() const;
@@ -55,9 +55,13 @@ public:
     static int size();
 
 private:
+	// For test
+	FRIEND_TEST(grid_init, Edge_WeakNormal);
+	FRIEND_TEST(grid_action, EquivalenceClass_WeakNormal);
 	FRIEND_TEST(grid_has_empty, Edge_WeakNormal);
 	FRIEND_TEST(grid_largest, BoundaryValue_Robust);
 	FRIEND_TEST(grid_random_empty_pos, Edge_WeakNormal);
+
     // Sets count values of 2 onto the board in an empty slot
     void init(int count);
 
@@ -69,14 +73,14 @@ private:
     bool merge(direction dir);
     
     // Returns true if the value is outside
-    inline bool is_outside(const int x, const int y) const;
+    inline bool is_outside(const int x, const int y) const;//
 
     // Sets the x and y with a random empty position
     void random_empty_pos(int& x, int& y);
 
     int m_grid[grid_size][grid_size];
 
-    std::vector<direction> m_actions;
+    std::vector<direction> m_actions;//
 
     unsigned int m_score;
 };

@@ -8,7 +8,34 @@ TEST(T1, T1) {
 }
 
 // init()
-TEST(T2, T2) {                                                                  
+TEST(grid_init, Edge_WeakNormal) { 
+	grid G;
+	G.reset();
+
+	//count = 1
+	G.init(1);
+	int count_diff =0;
+	for(int i = 0; i < grid_size; ++i) { 
+        for(int j = 0; j < grid_size; ++j) {
+            if(G.m_grid[j][i] == 2 || G.m_grid[j][i] == 4) {
+				count_diff++;
+			}
+        } 
+    } 
+	EXPECT_EQ(1, count_diff);   
+
+	//count = 2
+	G.reset();
+	count_diff = 0;
+	G.init(2);
+    for(int i = 0; i < grid_size; ++i) {
+        for(int j = 0; j < grid_size; ++j) {
+            if(G.m_grid[j][i] == 2 || G.m_grid[j][i] == 4) {
+                count_diff++;
+            } 
+        } 
+    }   
+    EXPECT_EQ(2, count_diff);                                                            
 }
 
 // is_outside()
@@ -16,7 +43,52 @@ TEST(T4, T4) {
 }
 
 // action()
-TEST(T5, T5) {
+TEST(grid_action, EquivalenceClass_WeakNormal) {
+	grid G, temp;
+	G.init(2);
+	temp = G;
+
+	direction north = direction::NORTH;
+	direction south = direction::SOUTH;
+	direction east = direction::EAST;
+	direction west = direction::WEST;
+
+	//north
+	if(temp.move(north) || temp.merge(north) || temp.move(north)) {
+		temp.init(round_slot_count);
+		temp.m_actions.push_back(north);
+		EXPECT_EQ(true, G.action(north));
+	}
+	else {
+		EXPECT_EQ(false, G.action(north));
+	}
+	//south
+	if(temp.move(south) || temp.merge(south) || temp.move(south)) {
+		temp.init(round_slot_count);
+        temp.m_actions.push_back(north);
+        EXPECT_EQ(true, G.action(north));   
+    }
+	else {
+		EXPECT_EQ(false, G.action(south));
+	}
+	//east
+	if(temp.move(east) || temp.merge(east) || temp.move(east)) {
+        temp.init(round_slot_count);
+        temp.m_actions.push_back(east);
+        EXPECT_EQ(true, G.action(east));
+    }
+	else {
+		EXPECT_EQ(false, G.action(east));
+	}
+	//west
+	if(temp.move(west) || temp.merge(west) || temp.move(west)) {
+        temp.init(round_slot_count);
+        temp.m_actions.push_back(west);
+        EXPECT_EQ(true, G.action(west));
+    }
+	else {
+		EXPECT_EQ(false, G.action(west));
+	}
 }
 
 void set_all_one(int m_grid[grid_size][grid_size]) {
