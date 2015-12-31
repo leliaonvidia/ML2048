@@ -23,10 +23,10 @@ bin/%_unittest: obj/%.o obj/%_unittest.o ${GTEST_LIBS} ${OBJS}
 bin/%_pathtest: obj/%.o obj/%_pathtest.o ${GTEST_LIBS} ${OBJS}
 	${CXX} ${CXXFLAGS} -o $@ $^ ${LDFLAGS}
 
+.PHONY: run coverage clean
 run: bin/grid_pathtest
 	./bin/grid_pathtest
 
-.PHONY: coverage clean
 coverage:
 	rm -rf cov
 	mkdir cov

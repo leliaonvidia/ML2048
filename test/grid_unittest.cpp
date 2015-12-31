@@ -145,7 +145,6 @@ TEST(grid_action, EquivalenceClass_WeakNormal) {
 		0, 0, 0, 0);
 	EXPECT_EQ(true, G.action(north));
 
-	
 	//Can't move at first but can merge
 	setGrid(G.m_grid,
 		2, 2, 2, 2,
@@ -183,6 +182,9 @@ void set_all_max(int m_grid[grid_size][grid_size]) {
 // has_empty()
 TEST(grid_has_empty, Edge_WeakNormal) {
 	grid g;
+	// Class: No zero
+	set_all_one(g.m_grid);
+	EXPECT_EQ(false, g.has_empty());
 	// Class: One zero
 	set_all_one(g.m_grid);
 	g.m_grid[0][0] = 0;
