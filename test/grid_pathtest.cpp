@@ -935,7 +935,10 @@ TEST(grid_largest, C0_Coverage) {
 	int int_max = std::numeric_limits<int>::max();
 
 	g.reset();
-	g.m_grid[0][0] = 1;			
+	g.m_grid[0][0] = 1;						// LL	
+	EXPECT_EQ(1, g.largest());	
+	g.reset();
+	g.m_grid[grid_size-1][grid_size-1] = 1;	// UU
 	EXPECT_EQ(1, g.largest());	
 
 	// All values are the same
