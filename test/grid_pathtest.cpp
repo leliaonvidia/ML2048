@@ -440,7 +440,7 @@ void set_all_max(int m_grid[grid_size][grid_size]) {
 // has_empty()
 TEST(grid_has_empty, C0_Coverage) {
 	grid g;
-	// Class: One zero
+
 	set_all_one(g.m_grid);
 	g.m_grid[0][0] = 0;
 	EXPECT_EQ(true, g.has_empty());	// LL
@@ -453,31 +453,14 @@ TEST(grid_has_empty, C0_Coverage) {
 	set_all_one(g.m_grid);
 	g.m_grid[grid_size-1][grid_size-1] = 0;
 	EXPECT_EQ(true, g.has_empty());	// UU
-	// Class: Two zeros
 	set_all_one(g.m_grid);
-	g.m_grid[0][0] = 0;
-	g.m_grid[grid_size-1][grid_size-1] = 0;
-	EXPECT_EQ(true, g.has_empty());	// LL, UU
-	set_all_one(g.m_grid);
-	g.m_grid[0][grid_size-1] = 0;
-	g.m_grid[grid_size-1][0] = 0;
-	EXPECT_EQ(true, g.has_empty());	// LU, UL
-	// Class: Three zeros
-	set_all_one(g.m_grid);
-	g.m_grid[0][0] = 0;
-	g.m_grid[0][grid_size-1] = 0;
-	g.m_grid[grid_size-1][0] = 0;
-	EXPECT_EQ(true, g.has_empty());	// LL, LU, UL
-	set_all_one(g.m_grid);
-	g.m_grid[0][grid_size-1] = 0;
-	g.m_grid[grid_size-1][0] = 0;
-	g.m_grid[grid_size-1][grid_size-1] = 0;
-	EXPECT_EQ(true, g.has_empty());	// LU, UL, UU
+	EXPECT_EQ(false, g.has_empty());
 }
 
 TEST(grid_has_empty, C1_Coverage) {
+	// Just the same as C0 since every branch is traversed.
 	grid g;
-	// Class: One zero
+
 	set_all_one(g.m_grid);
 	g.m_grid[0][0] = 0;
 	EXPECT_EQ(true, g.has_empty());	// LL
@@ -490,68 +473,33 @@ TEST(grid_has_empty, C1_Coverage) {
 	set_all_one(g.m_grid);
 	g.m_grid[grid_size-1][grid_size-1] = 0;
 	EXPECT_EQ(true, g.has_empty());	// UU
-	// Class: Two zeros
 	set_all_one(g.m_grid);
-	g.m_grid[0][0] = 0;
-	g.m_grid[grid_size-1][grid_size-1] = 0;
-	EXPECT_EQ(true, g.has_empty());	// LL, UU
-	set_all_one(g.m_grid);
-	g.m_grid[0][grid_size-1] = 0;
-	g.m_grid[grid_size-1][0] = 0;
-	EXPECT_EQ(true, g.has_empty());	// LU, UL
-	// Class: Three zeros
-	set_all_one(g.m_grid);
-	g.m_grid[0][0] = 0;
-	g.m_grid[0][grid_size-1] = 0;
-	g.m_grid[grid_size-1][0] = 0;
-	EXPECT_EQ(true, g.has_empty());	// LL, LU, UL
-	set_all_one(g.m_grid);
-	g.m_grid[0][grid_size-1] = 0;
-	g.m_grid[grid_size-1][0] = 0;
-	g.m_grid[grid_size-1][grid_size-1] = 0;
-	EXPECT_EQ(true, g.has_empty());	// LU, UL, UU
+	EXPECT_EQ(false, g.has_empty());
 }
 
 TEST(grid_has_empty, C2_Coverage) {
 	grid g;
-	// Class: One zero
+	
 	set_all_one(g.m_grid);
-	g.m_grid[0][0] = 0;
+	g.m_grid[1][1] = 0;
 	EXPECT_EQ(true, g.has_empty());	// LL
 	set_all_one(g.m_grid);
-	g.m_grid[0][grid_size-1] = 0;
+	g.m_grid[1][grid_size-1] = 0;
 	EXPECT_EQ(true, g.has_empty());	// LU
 	set_all_one(g.m_grid);
-	g.m_grid[grid_size-1][0] = 0;
+	g.m_grid[grid_size-1][1] = 0;
 	EXPECT_EQ(true, g.has_empty());	// UL
 	set_all_one(g.m_grid);
 	g.m_grid[grid_size-1][grid_size-1] = 0;
 	EXPECT_EQ(true, g.has_empty());	// UU
-	// Class: Two zeros
 	set_all_one(g.m_grid);
-	g.m_grid[0][0] = 0;
-	g.m_grid[grid_size-1][grid_size-1] = 0;
-	EXPECT_EQ(true, g.has_empty());	// LL, UU
-	set_all_one(g.m_grid);
-	g.m_grid[0][grid_size-1] = 0;
-	g.m_grid[grid_size-1][0] = 0;
-	EXPECT_EQ(true, g.has_empty());	// LU, UL
-	// Class: Three zeros
-	set_all_one(g.m_grid);
-	g.m_grid[0][0] = 0;
-	g.m_grid[0][grid_size-1] = 0;
-	g.m_grid[grid_size-1][0] = 0;
-	EXPECT_EQ(true, g.has_empty());	// LL, LU, UL
-	set_all_one(g.m_grid);
-	g.m_grid[0][grid_size-1] = 0;
-	g.m_grid[grid_size-1][0] = 0;
-	g.m_grid[grid_size-1][grid_size-1] = 0;
-	EXPECT_EQ(true, g.has_empty());	// LU, UL, UU
+	EXPECT_EQ(false, g.has_empty());
 }
 
 TEST(grid_has_empty, MCDC_Coverage) {
+	// Just the same as C1 since there are only two conditions.
 	grid g;
-	// Class: One zero
+
 	set_all_one(g.m_grid);
 	g.m_grid[0][0] = 0;
 	EXPECT_EQ(true, g.has_empty());	// LL
@@ -564,26 +512,8 @@ TEST(grid_has_empty, MCDC_Coverage) {
 	set_all_one(g.m_grid);
 	g.m_grid[grid_size-1][grid_size-1] = 0;
 	EXPECT_EQ(true, g.has_empty());	// UU
-	// Class: Two zeros
 	set_all_one(g.m_grid);
-	g.m_grid[0][0] = 0;
-	g.m_grid[grid_size-1][grid_size-1] = 0;
-	EXPECT_EQ(true, g.has_empty());	// LL, UU
-	set_all_one(g.m_grid);
-	g.m_grid[0][grid_size-1] = 0;
-	g.m_grid[grid_size-1][0] = 0;
-	EXPECT_EQ(true, g.has_empty());	// LU, UL
-	// Class: Three zeros
-	set_all_one(g.m_grid);
-	g.m_grid[0][0] = 0;
-	g.m_grid[0][grid_size-1] = 0;
-	g.m_grid[grid_size-1][0] = 0;
-	EXPECT_EQ(true, g.has_empty());	// LL, LU, UL
-	set_all_one(g.m_grid);
-	g.m_grid[0][grid_size-1] = 0;
-	g.m_grid[grid_size-1][0] = 0;
-	g.m_grid[grid_size-1][grid_size-1] = 0;
-	EXPECT_EQ(true, g.has_empty());	// LU, UL, UU
+	EXPECT_EQ(false, g.has_empty());
 }
 
 // get()
@@ -887,47 +817,70 @@ TEST(grid_set, MCDC_Coverage) {
 TEST(grid_largest, C0_Coverage) {
 	grid g;
 	int int_max = std::numeric_limits<int>::max();
+
+	g.reset();
+	g.m_grid[0][0] = 1;			
+	EXPECT_EQ(1, g.largest());	
+
+	// All values are the same
 	set_all_minus_one(g.m_grid);
 	EXPECT_EQ(-1, g.largest());			// L
 	g.reset();
-	g.m_grid[grid_size/2][grid_size/2] = 1;
-	EXPECT_EQ(1, g.largest());			// V
+	EXPECT_EQ(0, g.largest());			// L
 	set_all_max(g.m_grid);
 	EXPECT_EQ(int_max, g.largest());	// U
 }
 
 TEST(grid_largest, C1_Coverage) {
+	// Just the same C0 since every branch is traversed.
 	grid g;
 	int int_max = std::numeric_limits<int>::max();
+
+	g.reset();
+	g.m_grid[0][0] = 1;			
+	EXPECT_EQ(1, g.largest());	
+
+	// All values are the same
 	set_all_minus_one(g.m_grid);
 	EXPECT_EQ(-1, g.largest());			// L
 	g.reset();
-	g.m_grid[grid_size/2][grid_size/2] = 1;
-	EXPECT_EQ(1, g.largest());			// V
+	EXPECT_EQ(0, g.largest());			// L
 	set_all_max(g.m_grid);
 	EXPECT_EQ(int_max, g.largest());	// U
 }
 
 TEST(grid_largest, C2_Coverage) {
+	// Just the same C0 and C1 since grid_size > 1.
 	grid g;
 	int int_max = std::numeric_limits<int>::max();
+
+	g.reset();
+	g.m_grid[0][0] = 1;			
+	EXPECT_EQ(1, g.largest());	
+
+	// All values are the same
 	set_all_minus_one(g.m_grid);
 	EXPECT_EQ(-1, g.largest());			// L
 	g.reset();
-	g.m_grid[grid_size/2][grid_size/2] = 1;
-	EXPECT_EQ(1, g.largest());			// V
+	EXPECT_EQ(0, g.largest());			// L
 	set_all_max(g.m_grid);
 	EXPECT_EQ(int_max, g.largest());	// U
 }
 
 TEST(grid_largest, MCDC_Coverage) {
+	// Just the same as C1 since there are only two conditions.
 	grid g;
 	int int_max = std::numeric_limits<int>::max();
+
+	g.reset();
+	g.m_grid[0][0] = 1;			
+	EXPECT_EQ(1, g.largest());	
+
+	// All values are the same
 	set_all_minus_one(g.m_grid);
 	EXPECT_EQ(-1, g.largest());			// L
 	g.reset();
-	g.m_grid[grid_size/2][grid_size/2] = 1;
-	EXPECT_EQ(1, g.largest());			// V
+	EXPECT_EQ(0, g.largest());			// L
 	set_all_max(g.m_grid);
 	EXPECT_EQ(int_max, g.largest());	// U
 }
@@ -1474,133 +1427,77 @@ TEST(grid_merge, MCDC_Coverage)
 TEST(grid_random_empty_pos, C0_Coverage) {
 	grid g;
 	int x, y;
-	int a, b;
-	// Class: set empty, check pos
+	
+	x = y = -1;
+	set_all_one(g.m_grid);
+	g.random_empty_pos(x, y);
+	EXPECT_EQ(-1, x);
+	EXPECT_EQ(-1, y);
+
+	x = y = -1;
 	set_all_one(g.m_grid);
 	g.m_grid[0][0] = 0;
 	g.random_empty_pos(x, y);
 	EXPECT_EQ(0, x);
-	EXPECT_EQ(0, y);			// LL
-	set_all_one(g.m_grid);
-	g.m_grid[0][grid_size-1] = 0;
-	g.random_empty_pos(x, y);
-	EXPECT_EQ(grid_size-1, x);
-	EXPECT_EQ(0, y);			// LU
-	set_all_one(g.m_grid);
-	g.m_grid[grid_size-1][0] = 0;
-	g.random_empty_pos(x, y);
-	EXPECT_EQ(0, x);
-	EXPECT_EQ(grid_size-1, y);	// UL
-	set_all_one(g.m_grid);
-	g.m_grid[grid_size-1][grid_size-1] = 0;
-	g.random_empty_pos(x, y);
-	EXPECT_EQ(grid_size-1, x);
-	EXPECT_EQ(grid_size-1, y);	// UU
-	// Class: random pos, chech empty
-	a = rand_pos();
-	b = rand_pos();
-	g.m_grid[a][b] = 0;
-	g.random_empty_pos(x, y);
-	EXPECT_EQ(0, g.m_grid[y][x]);
+	EXPECT_EQ(0, y);
 }
 
 TEST(grid_random_empty_pos, C1_Coverage) {
+	// Just the same as C0 since every branch is traversed.
 	grid g;
 	int x, y;
-	int a, b;
-	// Class: set empty, check pos
+	
+	x = y = -1;
+	set_all_one(g.m_grid);
+	g.random_empty_pos(x, y);
+	EXPECT_EQ(-1, x);
+	EXPECT_EQ(-1, y);
+
+	x = y = -1;
 	set_all_one(g.m_grid);
 	g.m_grid[0][0] = 0;
 	g.random_empty_pos(x, y);
 	EXPECT_EQ(0, x);
-	EXPECT_EQ(0, y);			// LL
-	set_all_one(g.m_grid);
-	g.m_grid[0][grid_size-1] = 0;
-	g.random_empty_pos(x, y);
-	EXPECT_EQ(grid_size-1, x);
-	EXPECT_EQ(0, y);			// LU
-	set_all_one(g.m_grid);
-	g.m_grid[grid_size-1][0] = 0;
-	g.random_empty_pos(x, y);
-	EXPECT_EQ(0, x);
-	EXPECT_EQ(grid_size-1, y);	// UL
-	set_all_one(g.m_grid);
-	g.m_grid[grid_size-1][grid_size-1] = 0;
-	g.random_empty_pos(x, y);
-	EXPECT_EQ(grid_size-1, x);
-	EXPECT_EQ(grid_size-1, y);	// UU
-	// Class: random pos, chech empty
-	a = rand_pos();
-	b = rand_pos();
-	g.m_grid[a][b] = 0;
-	g.random_empty_pos(x, y);
-	EXPECT_EQ(0, g.m_grid[y][x]);
+	EXPECT_EQ(0, y);
 }
 
 TEST(grid_random_empty_pos, C2_Coverage) {
+	// Just the same as C0 and C1
+	// since the total runs of loop is randomly decided.
 	grid g;
 	int x, y;
-	int a, b;
-	// Class: set empty, check pos
+	
+	x = y = -1;
+	set_all_one(g.m_grid);
+	g.random_empty_pos(x, y);
+	EXPECT_EQ(-1, x);
+	EXPECT_EQ(-1, y);
+
+	x = y = -1;
 	set_all_one(g.m_grid);
 	g.m_grid[0][0] = 0;
 	g.random_empty_pos(x, y);
 	EXPECT_EQ(0, x);
-	EXPECT_EQ(0, y);			// LL
-	set_all_one(g.m_grid);
-	g.m_grid[0][grid_size-1] = 0;
-	g.random_empty_pos(x, y);
-	EXPECT_EQ(grid_size-1, x);
-	EXPECT_EQ(0, y);			// LU
-	set_all_one(g.m_grid);
-	g.m_grid[grid_size-1][0] = 0;
-	g.random_empty_pos(x, y);
-	EXPECT_EQ(0, x);
-	EXPECT_EQ(grid_size-1, y);	// UL
-	set_all_one(g.m_grid);
-	g.m_grid[grid_size-1][grid_size-1] = 0;
-	g.random_empty_pos(x, y);
-	EXPECT_EQ(grid_size-1, x);
-	EXPECT_EQ(grid_size-1, y);	// UU
-	// Class: random pos, chech empty
-	a = rand_pos();
-	b = rand_pos();
-	g.m_grid[a][b] = 0;
-	g.random_empty_pos(x, y);
-	EXPECT_EQ(0, g.m_grid[y][x]);
+	EXPECT_EQ(0, y);
 }
 
 TEST(grid_random_empty_pos, MCDC_Coverage) {
+	// Just the same as C1 since there are only two conditions.
 	grid g;
 	int x, y;
-	int a, b;
-	// Class: set empty, check pos
+	
+	x = y = -1;
+	set_all_one(g.m_grid);
+	g.random_empty_pos(x, y);
+	EXPECT_EQ(-1, x);
+	EXPECT_EQ(-1, y);
+
+	x = y = -1;
 	set_all_one(g.m_grid);
 	g.m_grid[0][0] = 0;
 	g.random_empty_pos(x, y);
 	EXPECT_EQ(0, x);
-	EXPECT_EQ(0, y);			// LL
-	set_all_one(g.m_grid);
-	g.m_grid[0][grid_size-1] = 0;
-	g.random_empty_pos(x, y);
-	EXPECT_EQ(grid_size-1, x);
-	EXPECT_EQ(0, y);			// LU
-	set_all_one(g.m_grid);
-	g.m_grid[grid_size-1][0] = 0;
-	g.random_empty_pos(x, y);
-	EXPECT_EQ(0, x);
-	EXPECT_EQ(grid_size-1, y);	// UL
-	set_all_one(g.m_grid);
-	g.m_grid[grid_size-1][grid_size-1] = 0;
-	g.random_empty_pos(x, y);
-	EXPECT_EQ(grid_size-1, x);
-	EXPECT_EQ(grid_size-1, y);	// UU
-	// Class: random pos, chech empty
-	a = rand_pos();
-	b = rand_pos();
-	g.m_grid[a][b] = 0;
-	g.random_empty_pos(x, y);
-	EXPECT_EQ(0, g.m_grid[y][x]);
+	EXPECT_EQ(0, y);
 }
 
 int main(int argc, char **argv)
