@@ -188,18 +188,7 @@ TEST(grid_init, MCDC_Coverage) {
 // is_outside()
 TEST(grid_is_outside, C0_Coverage) {
 	grid gr;
-	EXPECT_EQ(true, gr.is_outside(1, -1));
-	EXPECT_EQ(false, gr.is_outside(1, 0));
 	EXPECT_EQ(false, gr.is_outside(1, 1));
-	EXPECT_EQ(false, gr.is_outside(1, grid_size - 2));
-	EXPECT_EQ(false, gr.is_outside(1, grid_size - 1));
-	EXPECT_EQ(true, gr.is_outside(1, grid_size));
-	EXPECT_EQ(true, gr.is_outside(-1, 1));
-	EXPECT_EQ(false, gr.is_outside(0, 1));
-	EXPECT_EQ(false, gr.is_outside(1, 1));
-	EXPECT_EQ(false, gr.is_outside(grid_size - 2, 1));
-	EXPECT_EQ(false, gr.is_outside(grid_size - 1, 1));
-	EXPECT_EQ(true, gr.is_outside(grid_size, 1));
 }
 
 TEST(grid_is_outside, C1_Coverage) {
@@ -210,24 +199,21 @@ TEST(grid_is_outside, C1_Coverage) {
 
 TEST(grid_is_outside, C2_Coverage) {
 	grid gr;
-	EXPECT_EQ(true, gr.is_outside(1, -1));
-	EXPECT_EQ(false, gr.is_outside(1, 0));
-	EXPECT_EQ(false, gr.is_outside(1, 1));
-	EXPECT_EQ(false, gr.is_outside(1, grid_size - 2));
-	EXPECT_EQ(false, gr.is_outside(1, grid_size - 1));
-	EXPECT_EQ(true, gr.is_outside(1, grid_size));
-	EXPECT_EQ(true, gr.is_outside(-1, 1));
-	EXPECT_EQ(false, gr.is_outside(0, 1));
-	EXPECT_EQ(false, gr.is_outside(1, 1));
-	EXPECT_EQ(false, gr.is_outside(grid_size - 2, 1));
-	EXPECT_EQ(false, gr.is_outside(grid_size - 1, 1));
-	EXPECT_EQ(true, gr.is_outside(grid_size, 1));
+	EXPECT_EQ(false, gr.is_outside(2, 2));
+	EXPECT_EQ(true, gr.is_outside(grid_size + 3, 0));
 }
 
 TEST(grid_is_outside, MCDC_Coverage) {
 	grid gr;
+	EXPECT_EQ(true, gr.is_outside(-1, -1));
+	EXPECT_EQ(true, gr.is_outside(-1, 2));
+	EXPECT_EQ(true, gr.is_outside(-1, grid_size));
+	EXPECT_EQ(true, gr.is_outside(2, -1));
 	EXPECT_EQ(false, gr.is_outside(2, 2));
+	EXPECT_EQ(true, gr.is_outside(2, grid_size + 1));
 	EXPECT_EQ(true, gr.is_outside(grid_size + 3, 0));
+	EXPECT_EQ(true, gr.is_outside(grid_size + 3, 2));
+	EXPECT_EQ(true, gr.is_outside(grid_size + 3, grid_size));
 }
 
 void setGrid(int grid[][grid_size],
@@ -597,15 +583,6 @@ TEST(grid_get, C0_Coverage) {
 	
 	EXPECT_EQ(-1, gr.get(1, -1));
 	EXPECT_EQ(1, gr.get(1, 0));
-	EXPECT_EQ(11, gr.get(1, 1));
-	EXPECT_EQ((grid_size - 2) * 10 + 1, gr.get(1, grid_size - 2));
-	EXPECT_EQ((grid_size - 1) * 10 + 1, gr.get(1, grid_size - 1));
-	EXPECT_EQ(-1, gr.get(1, grid_size));
-	EXPECT_EQ(-1, gr.get(-1, 1));
-	EXPECT_EQ(10, gr.get(0, 1));
-	EXPECT_EQ(10 + (grid_size - 2), gr.get(grid_size - 2, 1));
-	EXPECT_EQ(10 + (grid_size - 1), gr.get(grid_size - 1, 1));
-	EXPECT_EQ(-1, gr.get(grid_size, 1));
 }
 
 TEST(grid_get, C1_Coverage) {
@@ -618,15 +595,6 @@ TEST(grid_get, C1_Coverage) {
 	
 	EXPECT_EQ(-1, gr.get(1, -1));
 	EXPECT_EQ(1, gr.get(1, 0));
-	EXPECT_EQ(11, gr.get(1, 1));
-	EXPECT_EQ((grid_size - 2) * 10 + 1, gr.get(1, grid_size - 2));
-	EXPECT_EQ((grid_size - 1) * 10 + 1, gr.get(1, grid_size - 1));
-	EXPECT_EQ(-1, gr.get(1, grid_size));
-	EXPECT_EQ(-1, gr.get(-1, 1));
-	EXPECT_EQ(10, gr.get(0, 1));
-	EXPECT_EQ(10 + (grid_size - 2), gr.get(grid_size - 2, 1));
-	EXPECT_EQ(10 + (grid_size - 1), gr.get(grid_size - 1, 1));
-	EXPECT_EQ(-1, gr.get(grid_size, 1));
 }
 
 TEST(grid_get, C2_Coverage) {
@@ -639,15 +607,6 @@ TEST(grid_get, C2_Coverage) {
 	
 	EXPECT_EQ(-1, gr.get(1, -1));
 	EXPECT_EQ(1, gr.get(1, 0));
-	EXPECT_EQ(11, gr.get(1, 1));
-	EXPECT_EQ((grid_size - 2) * 10 + 1, gr.get(1, grid_size - 2));
-	EXPECT_EQ((grid_size - 1) * 10 + 1, gr.get(1, grid_size - 1));
-	EXPECT_EQ(-1, gr.get(1, grid_size));
-	EXPECT_EQ(-1, gr.get(-1, 1));
-	EXPECT_EQ(10, gr.get(0, 1));
-	EXPECT_EQ(10 + (grid_size - 2), gr.get(grid_size - 2, 1));
-	EXPECT_EQ(10 + (grid_size - 1), gr.get(grid_size - 1, 1));
-	EXPECT_EQ(-1, gr.get(grid_size, 1));
 }
 
 TEST(grid_get, MCDC_Coverage) {
@@ -660,15 +619,6 @@ TEST(grid_get, MCDC_Coverage) {
 	
 	EXPECT_EQ(-1, gr.get(1, -1));
 	EXPECT_EQ(1, gr.get(1, 0));
-	EXPECT_EQ(11, gr.get(1, 1));
-	EXPECT_EQ((grid_size - 2) * 10 + 1, gr.get(1, grid_size - 2));
-	EXPECT_EQ((grid_size - 1) * 10 + 1, gr.get(1, grid_size - 1));
-	EXPECT_EQ(-1, gr.get(1, grid_size));
-	EXPECT_EQ(-1, gr.get(-1, 1));
-	EXPECT_EQ(10, gr.get(0, 1));
-	EXPECT_EQ(10 + (grid_size - 2), gr.get(grid_size - 2, 1));
-	EXPECT_EQ(10 + (grid_size - 1), gr.get(grid_size - 1, 1));
-	EXPECT_EQ(-1, gr.get(grid_size, 1));
 }
 
 bool isMGridEqual(int m_grid1[][grid_size], int m_grid2[][grid_size])
@@ -695,41 +645,8 @@ TEST(grid_set, C0_Coverage) {
 	gr.set(1, -1, 100);
 	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
 
-	gr.set(1, grid_size, 100);
-	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
-
-	gr.set(-1, 1, 100);
-	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
-
-	gr.set(grid_size, 1, 100);
-	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
-
 	gr.set(1, 0, 100);
 	gr_test.m_grid[0][1] = 100;
-	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
-
-	gr.set(1, 1, 100);
-	gr_test.m_grid[1][1] = 100;
-	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
-
-	gr.set(1, grid_size - 2, 100);
-	gr_test.m_grid[grid_size - 2][1] = 100;
-	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
-
-	gr.set(1, grid_size - 1, 100);
-	gr_test.m_grid[grid_size - 1][1] = 100;
-	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
-
-	gr.set(0, 1, 100);
-	gr_test.m_grid[1][0] = 100;
-	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
-
-	gr_test.m_grid[1][grid_size - 2] = 100;
-	gr.set(grid_size - 2, 1, 100);
-	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
-
-	gr.set(grid_size - 1, 1, 100);
-	gr_test.m_grid[1][grid_size - 1] = 100;
 	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
 }
 
@@ -745,41 +662,8 @@ TEST(grid_set, C1_Coverage) {
 	gr.set(1, -1, 100);
 	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
 
-	gr.set(1, grid_size, 100);
-	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
-
-	gr.set(-1, 1, 100);
-	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
-
-	gr.set(grid_size, 1, 100);
-	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
-
 	gr.set(1, 0, 100);
 	gr_test.m_grid[0][1] = 100;
-	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
-
-	gr.set(1, 1, 100);
-	gr_test.m_grid[1][1] = 100;
-	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
-
-	gr.set(1, grid_size - 2, 100);
-	gr_test.m_grid[grid_size - 2][1] = 100;
-	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
-
-	gr.set(1, grid_size - 1, 100);
-	gr_test.m_grid[grid_size - 1][1] = 100;
-	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
-
-	gr.set(0, 1, 100);
-	gr_test.m_grid[1][0] = 100;
-	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
-
-	gr_test.m_grid[1][grid_size - 2] = 100;
-	gr.set(grid_size - 2, 1, 100);
-	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
-
-	gr.set(grid_size - 1, 1, 100);
-	gr_test.m_grid[1][grid_size - 1] = 100;
 	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
 }
 
@@ -795,41 +679,8 @@ TEST(grid_set, C2_Coverage) {
 	gr.set(1, -1, 100);
 	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
 
-	gr.set(1, grid_size, 100);
-	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
-
-	gr.set(-1, 1, 100);
-	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
-
-	gr.set(grid_size, 1, 100);
-	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
-
 	gr.set(1, 0, 100);
 	gr_test.m_grid[0][1] = 100;
-	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
-
-	gr.set(1, 1, 100);
-	gr_test.m_grid[1][1] = 100;
-	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
-
-	gr.set(1, grid_size - 2, 100);
-	gr_test.m_grid[grid_size - 2][1] = 100;
-	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
-
-	gr.set(1, grid_size - 1, 100);
-	gr_test.m_grid[grid_size - 1][1] = 100;
-	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
-
-	gr.set(0, 1, 100);
-	gr_test.m_grid[1][0] = 100;
-	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
-
-	gr_test.m_grid[1][grid_size - 2] = 100;
-	gr.set(grid_size - 2, 1, 100);
-	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
-
-	gr.set(grid_size - 1, 1, 100);
-	gr_test.m_grid[1][grid_size - 1] = 100;
 	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
 }
 
@@ -845,41 +696,8 @@ TEST(grid_set, MCDC_Coverage) {
 	gr.set(1, -1, 100);
 	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
 
-	gr.set(1, grid_size, 100);
-	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
-
-	gr.set(-1, 1, 100);
-	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
-
-	gr.set(grid_size, 1, 100);
-	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
-
 	gr.set(1, 0, 100);
 	gr_test.m_grid[0][1] = 100;
-	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
-
-	gr.set(1, 1, 100);
-	gr_test.m_grid[1][1] = 100;
-	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
-
-	gr.set(1, grid_size - 2, 100);
-	gr_test.m_grid[grid_size - 2][1] = 100;
-	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
-
-	gr.set(1, grid_size - 1, 100);
-	gr_test.m_grid[grid_size - 1][1] = 100;
-	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
-
-	gr.set(0, 1, 100);
-	gr_test.m_grid[1][0] = 100;
-	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
-
-	gr_test.m_grid[1][grid_size - 2] = 100;
-	gr.set(grid_size - 2, 1, 100);
-	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
-
-	gr.set(grid_size - 1, 1, 100);
-	gr_test.m_grid[1][grid_size - 1] = 100;
 	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
 }
 
@@ -938,73 +756,58 @@ TEST(grid_move, C0_Coverage)
 	grid gr;
 	grid gr_test;
 
-	// Empty
+	// C0 added
 	setGrid(gr.m_grid,
 		0, 0, 0, 0,
-		0, 0, 0, 0,
+		0, 1, 0, 0,
 		0, 0, 0, 0,
 		0, 0, 0, 0);
-	gr_test = gr;
-	EXPECT_EQ(false, gr.move(direction::NORTH));
-	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
-	EXPECT_EQ(false, gr.move(direction::SOUTH));
-	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
-	EXPECT_EQ(false, gr.move(direction::EAST));
-	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
-	EXPECT_EQ(false, gr.move(direction::WEST));
-	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
-
-	// Not empty, but cannot move
-	setGrid(gr.m_grid,
-		1, 2, 4, 8,
-		0, 0, 0, 2,
-		8, 4, 2, 1,
-		0, 0, 0, 1);
-	gr_test = gr;
-	EXPECT_EQ(false, gr.move(direction::EAST));
-	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
-
-	// 1 move in a row
-	setGrid(gr.m_grid,
-		0, 512, 0, 512,
-		0, 0, 2, 0,
-		16, 0, 16, 8,
-		1, 0, 0, 1);
 	setGrid(gr_test.m_grid,
-		0, 0, 512, 512,
-		0, 0, 0, 2,
-		0, 16, 16, 8,
-		0, 0, 1, 1);
-	EXPECT_EQ(true, gr.move(direction::EAST));
-	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
-	
-	// 2 moves in a row
-	setGrid(gr.m_grid,
-		0, 2, 0, 0,
-		1, 0, 4, 8,
-		0, 2, 0, 8,
-		1, 2, 4, 8);
-	setGrid(gr_test.m_grid,
-		1, 2, 4, 8,
-		1, 2, 4, 8,
-		0, 2, 0, 8,
+		0, 1, 0, 0,
+		0, 0, 0, 0, 
+		0, 0, 0, 0, 
 		0, 0, 0, 0);
 	EXPECT_EQ(true, gr.move(direction::NORTH));
 	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
-	
-	// 3 moves in a row
+
 	setGrid(gr.m_grid,
-		1024, 2, 4, 0,
-		1, 0, 4, 8,
-		4, 2, 4, 0,
-		1, 2, 0, 8);
+		0, 0, 0, 0,
+		0, 1, 0, 0,
+		0, 0, 0, 0,
+		0, 0, 0, 0);
 	setGrid(gr_test.m_grid,
-		0, 1024, 2, 4,
-		0, 1, 4, 8,
-		0, 4, 2, 4,
-		0, 1, 2, 8);
+		0, 0, 0, 0,
+		0, 0, 0, 0,
+		0, 0, 0, 0,
+		0, 1, 0, 0);
+	EXPECT_EQ(true, gr.move(direction::SOUTH));
+	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
+
+	setGrid(gr.m_grid,
+		0, 0, 0, 0,
+		0, 1, 0, 0,
+		0, 0, 0, 0,
+		0, 0, 0, 0);
+	setGrid(gr_test.m_grid,
+		0, 0, 0, 0,
+		0, 0, 0, 1,
+		0, 0, 0, 0,
+		0, 0, 0, 0);
 	EXPECT_EQ(true, gr.move(direction::EAST));
-	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));	
+	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
+
+	setGrid(gr.m_grid,
+		0, 0, 0, 0,
+		0, 1, 0, 0,
+		0, 0, 0, 0,
+		0, 0, 0, 0);
+	setGrid(gr_test.m_grid,
+		0, 0, 0, 0,
+		1, 0, 0, 0,
+		0, 0, 0, 0,
+		0, 0, 0, 0);
+	EXPECT_EQ(true, gr.move(direction::WEST));
+	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
 }
 
 TEST(grid_move, C1_Coverage)
@@ -1012,73 +815,111 @@ TEST(grid_move, C1_Coverage)
 	grid gr;
 	grid gr_test;
 
-	// Empty
+	// C0 added
 	setGrid(gr.m_grid,
 		0, 0, 0, 0,
-		0, 0, 0, 0,
+		0, 1, 0, 0,
 		0, 0, 0, 0,
 		0, 0, 0, 0);
-	gr_test = gr;
-	EXPECT_EQ(false, gr.move(direction::NORTH));
-	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
-	EXPECT_EQ(false, gr.move(direction::SOUTH));
-	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
-	EXPECT_EQ(false, gr.move(direction::EAST));
-	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
-	EXPECT_EQ(false, gr.move(direction::WEST));
-	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
-
-	// Not empty, but cannot move
-	setGrid(gr.m_grid,
-		1, 2, 4, 8,
-		0, 0, 0, 2,
-		8, 4, 2, 1,
-		0, 0, 0, 1);
-	gr_test = gr;
-	EXPECT_EQ(false, gr.move(direction::EAST));
-	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
-
-	// 1 move in a row
-	setGrid(gr.m_grid,
-		0, 512, 0, 512,
-		0, 0, 2, 0,
-		16, 0, 16, 8,
-		1, 0, 0, 1);
 	setGrid(gr_test.m_grid,
-		0, 0, 512, 512,
-		0, 0, 0, 2,
-		0, 16, 16, 8,
-		0, 0, 1, 1);
-	EXPECT_EQ(true, gr.move(direction::EAST));
-	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
-	
-	// 2 moves in a row
-	setGrid(gr.m_grid,
-		0, 2, 0, 0,
-		1, 0, 4, 8,
-		0, 2, 0, 8,
-		1, 2, 4, 8);
-	setGrid(gr_test.m_grid,
-		1, 2, 4, 8,
-		1, 2, 4, 8,
-		0, 2, 0, 8,
+		0, 1, 0, 0,
+		0, 0, 0, 0, 
+		0, 0, 0, 0, 
 		0, 0, 0, 0);
 	EXPECT_EQ(true, gr.move(direction::NORTH));
 	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
-	
-	// 3 moves in a row
+
 	setGrid(gr.m_grid,
-		1024, 2, 4, 0,
-		1, 0, 4, 8,
-		4, 2, 4, 0,
-		1, 2, 0, 8);
+		0, 0, 0, 0,
+		0, 1, 0, 0,
+		0, 0, 0, 0,
+		0, 0, 0, 0);
 	setGrid(gr_test.m_grid,
-		0, 1024, 2, 4,
-		0, 1, 4, 8,
-		0, 4, 2, 4,
-		0, 1, 2, 8);
+		0, 0, 0, 0,
+		0, 0, 0, 0,
+		0, 0, 0, 0,
+		0, 1, 0, 0);
+	EXPECT_EQ(true, gr.move(direction::SOUTH));
+	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
+
+	setGrid(gr.m_grid,
+		0, 0, 0, 0,
+		0, 1, 0, 0,
+		0, 0, 0, 0,
+		0, 0, 0, 0);
+	setGrid(gr_test.m_grid,
+		0, 0, 0, 0,
+		0, 0, 0, 1,
+		0, 0, 0, 0,
+		0, 0, 0, 0);
 	EXPECT_EQ(true, gr.move(direction::EAST));
-	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));	
+	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
+
+	setGrid(gr.m_grid,
+		0, 0, 0, 0,
+		0, 1, 0, 0,
+		0, 0, 0, 0,
+		0, 0, 0, 0);
+	setGrid(gr_test.m_grid,
+		0, 0, 0, 0,
+		1, 0, 0, 0,
+		0, 0, 0, 0,
+		0, 0, 0, 0);
+	EXPECT_EQ(true, gr.move(direction::WEST));
+	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
+
+	// C1 added
+	setGrid(gr.m_grid,
+		0, 1, 0, 0,
+		0, 0, 0, 0,
+		0, 0, 0, 0,
+		0, 0, 0, 0);
+	setGrid(gr_test.m_grid,
+		0, 1, 0, 0,
+		0, 0, 0, 0, 
+		0, 0, 0, 0, 
+		0, 0, 0, 0);
+	EXPECT_EQ(false, gr.move(direction::NORTH));
+	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
+
+	setGrid(gr.m_grid,
+		0, 0, 0, 0,
+		0, 0, 0, 0,
+		0, 0, 0, 0,
+		0, 1, 0, 0);
+	setGrid(gr_test.m_grid,
+		0, 0, 0, 0,
+		0, 0, 0, 0,
+		0, 0, 0, 0,
+		0, 1, 0, 0);
+	EXPECT_EQ(false, gr.move(direction::SOUTH));
+	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
+
+	setGrid(gr.m_grid,
+		0, 0, 0, 0,
+		0, 0, 0, 1,
+		0, 0, 0, 0,
+		0, 0, 0, 0);
+	setGrid(gr_test.m_grid,
+		0, 0, 0, 0,
+		0, 0, 0, 1,
+		0, 0, 0, 0,
+		0, 0, 0, 0);
+	EXPECT_EQ(false, gr.move(direction::EAST));
+	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
+
+	setGrid(gr.m_grid,
+		0, 0, 0, 0,
+		1, 0, 0, 0,
+		0, 0, 0, 0,
+		0, 0, 0, 0);
+	setGrid(gr_test.m_grid,
+		0, 0, 0, 0,
+		1, 0, 0, 0,
+		0, 0, 0, 0,
+		0, 0, 0, 0);
+	EXPECT_EQ(false, gr.move(direction::WEST));
+	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
 }
 
 TEST(grid_move, C2_Coverage)
@@ -1086,73 +927,138 @@ TEST(grid_move, C2_Coverage)
 	grid gr;
 	grid gr_test;
 
-	// Empty
+	// C0 added
 	setGrid(gr.m_grid,
 		0, 0, 0, 0,
-		0, 0, 0, 0,
+		0, 1, 0, 0,
 		0, 0, 0, 0,
 		0, 0, 0, 0);
-	gr_test = gr;
-	EXPECT_EQ(false, gr.move(direction::NORTH));
-	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
-	EXPECT_EQ(false, gr.move(direction::SOUTH));
-	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
-	EXPECT_EQ(false, gr.move(direction::EAST));
-	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
-	EXPECT_EQ(false, gr.move(direction::WEST));
-	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
-
-	// Not empty, but cannot move
-	setGrid(gr.m_grid,
-		1, 2, 4, 8,
-		0, 0, 0, 2,
-		8, 4, 2, 1,
-		0, 0, 0, 1);
-	gr_test = gr;
-	EXPECT_EQ(false, gr.move(direction::EAST));
-	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
-
-	// 1 move in a row
-	setGrid(gr.m_grid,
-		0, 512, 0, 512,
-		0, 0, 2, 0,
-		16, 0, 16, 8,
-		1, 0, 0, 1);
 	setGrid(gr_test.m_grid,
-		0, 0, 512, 512,
-		0, 0, 0, 2,
-		0, 16, 16, 8,
-		0, 0, 1, 1);
-	EXPECT_EQ(true, gr.move(direction::EAST));
-	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
-	
-	// 2 moves in a row
-	setGrid(gr.m_grid,
-		0, 2, 0, 0,
-		1, 0, 4, 8,
-		0, 2, 0, 8,
-		1, 2, 4, 8);
-	setGrid(gr_test.m_grid,
-		1, 2, 4, 8,
-		1, 2, 4, 8,
-		0, 2, 0, 8,
+		0, 1, 0, 0,
+		0, 0, 0, 0, 
+		0, 0, 0, 0, 
 		0, 0, 0, 0);
 	EXPECT_EQ(true, gr.move(direction::NORTH));
 	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
-	
-	// 3 moves in a row
+
 	setGrid(gr.m_grid,
-		1024, 2, 4, 0,
-		1, 0, 4, 8,
-		4, 2, 4, 0,
-		1, 2, 0, 8);
+		0, 0, 0, 0,
+		0, 1, 0, 0,
+		0, 0, 0, 0,
+		0, 0, 0, 0);
 	setGrid(gr_test.m_grid,
-		0, 1024, 2, 4,
-		0, 1, 4, 8,
-		0, 4, 2, 4,
-		0, 1, 2, 8);
+		0, 0, 0, 0,
+		0, 0, 0, 0,
+		0, 0, 0, 0,
+		0, 1, 0, 0);
+	EXPECT_EQ(true, gr.move(direction::SOUTH));
+	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
+
+	setGrid(gr.m_grid,
+		0, 0, 0, 0,
+		0, 1, 0, 0,
+		0, 0, 0, 0,
+		0, 0, 0, 0);
+	setGrid(gr_test.m_grid,
+		0, 0, 0, 0,
+		0, 0, 0, 1,
+		0, 0, 0, 0,
+		0, 0, 0, 0);
 	EXPECT_EQ(true, gr.move(direction::EAST));
-	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));	
+	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
+
+	setGrid(gr.m_grid,
+		0, 0, 0, 0,
+		0, 1, 0, 0,
+		0, 0, 0, 0,
+		0, 0, 0, 0);
+	setGrid(gr_test.m_grid,
+		0, 0, 0, 0,
+		1, 0, 0, 0,
+		0, 0, 0, 0,
+		0, 0, 0, 0);
+	EXPECT_EQ(true, gr.move(direction::WEST));
+	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
+
+	// C1 added
+	setGrid(gr.m_grid,
+		0, 1, 0, 0,
+		0, 0, 0, 0,
+		0, 0, 0, 0,
+		0, 0, 0, 0);
+	setGrid(gr_test.m_grid,
+		0, 1, 0, 0,
+		0, 0, 0, 0, 
+		0, 0, 0, 0, 
+		0, 0, 0, 0);
+	EXPECT_EQ(false, gr.move(direction::NORTH));
+	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
+
+	setGrid(gr.m_grid,
+		0, 0, 0, 0,
+		0, 0, 0, 0,
+		0, 0, 0, 0,
+		0, 1, 0, 0);
+	setGrid(gr_test.m_grid,
+		0, 0, 0, 0,
+		0, 0, 0, 0,
+		0, 0, 0, 0,
+		0, 1, 0, 0);
+	EXPECT_EQ(false, gr.move(direction::SOUTH));
+	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
+
+	setGrid(gr.m_grid,
+		0, 0, 0, 0,
+		0, 0, 0, 1,
+		0, 0, 0, 0,
+		0, 0, 0, 0);
+	setGrid(gr_test.m_grid,
+		0, 0, 0, 0,
+		0, 0, 0, 1,
+		0, 0, 0, 0,
+		0, 0, 0, 0);
+	EXPECT_EQ(false, gr.move(direction::EAST));
+	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
+
+	setGrid(gr.m_grid,
+		0, 0, 0, 0,
+		1, 0, 0, 0,
+		0, 0, 0, 0,
+		0, 0, 0, 0);
+	setGrid(gr_test.m_grid,
+		0, 0, 0, 0,
+		1, 0, 0, 0,
+		0, 0, 0, 0,
+		0, 0, 0, 0);
+	EXPECT_EQ(false, gr.move(direction::WEST));
+	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
+
+	// C2 added
+	setGrid(gr.m_grid,
+		0, 0, 0, 0,
+		0, 0, 0, 0,
+		0, 0, 1, 0,
+		0, 0, 0, 0);
+	setGrid(gr_test.m_grid,
+		0, 0, 1, 0,
+		0, 0, 0, 0,
+		0, 0, 0, 0,
+		0, 0, 0, 0);
+	EXPECT_EQ(true, gr.move(direction::NORTH));
+	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
+
+	setGrid(gr.m_grid,
+		0, 0, 0, 0,
+		0, 0, 0, 0,
+		0, 0, 1, 0,
+		0, 0, 0, 0);
+	setGrid(gr_test.m_grid,
+		0, 0, 0, 0,
+		0, 0, 0, 0,
+		1, 0, 0, 0,
+		0, 0, 0, 0);
+	EXPECT_EQ(true, gr.move(direction::WEST));
+	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
 }
 
 TEST(grid_move, MCDC_Coverage)
@@ -1160,73 +1066,114 @@ TEST(grid_move, MCDC_Coverage)
 	grid gr;
 	grid gr_test;
 
-	// Empty
+	// C0 added
 	setGrid(gr.m_grid,
 		0, 0, 0, 0,
-		0, 0, 0, 0,
+		0, 1, 0, 0,
 		0, 0, 0, 0,
 		0, 0, 0, 0);
-	gr_test = gr;
-	EXPECT_EQ(false, gr.move(direction::NORTH));
-	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
-	EXPECT_EQ(false, gr.move(direction::SOUTH));
-	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
-	EXPECT_EQ(false, gr.move(direction::EAST));
-	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
-	EXPECT_EQ(false, gr.move(direction::WEST));
-	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
-
-	// Not empty, but cannot move
-	setGrid(gr.m_grid,
-		1, 2, 4, 8,
-		0, 0, 0, 2,
-		8, 4, 2, 1,
-		0, 0, 0, 1);
-	gr_test = gr;
-	EXPECT_EQ(false, gr.move(direction::EAST));
-	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
-
-	// 1 move in a row
-	setGrid(gr.m_grid,
-		0, 512, 0, 512,
-		0, 0, 2, 0,
-		16, 0, 16, 8,
-		1, 0, 0, 1);
 	setGrid(gr_test.m_grid,
-		0, 0, 512, 512,
-		0, 0, 0, 2,
-		0, 16, 16, 8,
-		0, 0, 1, 1);
-	EXPECT_EQ(true, gr.move(direction::EAST));
-	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
-	
-	// 2 moves in a row
-	setGrid(gr.m_grid,
-		0, 2, 0, 0,
-		1, 0, 4, 8,
-		0, 2, 0, 8,
-		1, 2, 4, 8);
-	setGrid(gr_test.m_grid,
-		1, 2, 4, 8,
-		1, 2, 4, 8,
-		0, 2, 0, 8,
+		0, 1, 0, 0,
+		0, 0, 0, 0, 
+		0, 0, 0, 0, 
 		0, 0, 0, 0);
 	EXPECT_EQ(true, gr.move(direction::NORTH));
 	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
-	
-	// 3 moves in a row
+
 	setGrid(gr.m_grid,
-		1024, 2, 4, 0,
-		1, 0, 4, 8,
-		4, 2, 4, 0,
-		1, 2, 0, 8);
+		0, 0, 0, 0,
+		0, 1, 0, 0,
+		0, 0, 0, 0,
+		0, 0, 0, 0);
 	setGrid(gr_test.m_grid,
-		0, 1024, 2, 4,
-		0, 1, 4, 8,
-		0, 4, 2, 4,
-		0, 1, 2, 8);
+		0, 0, 0, 0,
+		0, 0, 0, 0,
+		0, 0, 0, 0,
+		0, 1, 0, 0);
+	EXPECT_EQ(true, gr.move(direction::SOUTH));
+	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
+
+	setGrid(gr.m_grid,
+		0, 0, 0, 0,
+		0, 1, 0, 0,
+		0, 0, 0, 0,
+		0, 0, 0, 0);
+	setGrid(gr_test.m_grid,
+		0, 0, 0, 0,
+		0, 0, 0, 1,
+		0, 0, 0, 0,
+		0, 0, 0, 0);
 	EXPECT_EQ(true, gr.move(direction::EAST));
-	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));	
+	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
+
+	setGrid(gr.m_grid,
+		0, 0, 0, 0,
+		0, 1, 0, 0,
+		0, 0, 0, 0,
+		0, 0, 0, 0);
+	setGrid(gr_test.m_grid,
+		0, 0, 0, 0,
+		1, 0, 0, 0,
+		0, 0, 0, 0,
+		0, 0, 0, 0);
+	EXPECT_EQ(true, gr.move(direction::WEST));
+	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
+
+	// C1 added
+	setGrid(gr.m_grid,
+		0, 1, 0, 0,
+		0, 0, 0, 0,
+		0, 0, 0, 0,
+		0, 0, 0, 0);
+	setGrid(gr_test.m_grid,
+		0, 1, 0, 0,
+		0, 0, 0, 0, 
+		0, 0, 0, 0, 
+		0, 0, 0, 0);
+	EXPECT_EQ(false, gr.move(direction::NORTH));
+	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
+
+	setGrid(gr.m_grid,
+		0, 0, 0, 0,
+		0, 0, 0, 0,
+		0, 0, 0, 0,
+		0, 1, 0, 0);
+	setGrid(gr_test.m_grid,
+		0, 0, 0, 0,
+		0, 0, 0, 0,
+		0, 0, 0, 0,
+		0, 1, 0, 0);
+	EXPECT_EQ(false, gr.move(direction::SOUTH));
+	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
+
+	setGrid(gr.m_grid,
+		0, 0, 0, 0,
+		0, 0, 0, 1,
+		0, 0, 0, 0,
+		0, 0, 0, 0);
+	setGrid(gr_test.m_grid,
+		0, 0, 0, 0,
+		0, 0, 0, 1,
+		0, 0, 0, 0,
+		0, 0, 0, 0);
+	EXPECT_EQ(false, gr.move(direction::EAST));
+	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
+
+	setGrid(gr.m_grid,
+		0, 0, 0, 0,
+		1, 0, 0, 0,
+		0, 0, 0, 0,
+		0, 0, 0, 0);
+	setGrid(gr_test.m_grid,
+		0, 0, 0, 0,
+		1, 0, 0, 0,
+		0, 0, 0, 0,
+		0, 0, 0, 0);
+	EXPECT_EQ(false, gr.move(direction::WEST));
+	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
+
+	// MCDC added
+	// Nothing
 }
 
 // merge()
@@ -1235,58 +1182,70 @@ TEST(grid_merge, C0_Coverage)
 	grid gr;
 	grid gr_test;
 
-	// Empty
+	// C0 added
 	setGrid(gr.m_grid,
-		0, 0, 0, 0,
-		0, 0, 0, 0,
+		1, 1, 0, 0,
+		1, 1, 0, 0,
 		0, 0, 0, 0,
 		0, 0, 0, 0);
-	gr_test = gr;
-	EXPECT_EQ(false, gr.merge(direction::NORTH));
-	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
-	EXPECT_EQ(false, gr.merge(direction::SOUTH));
-	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
-	EXPECT_EQ(false, gr.merge(direction::EAST));
-	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
-	EXPECT_EQ(false, gr.merge(direction::WEST));
-	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
-
-	// Not empty, but cannot merge
-	setGrid(gr.m_grid,
-		0, 2, 0, 8,
-		0, 0, 0, 2,
-		8, 0, 2, 1,
-		0, 2, 0, 1);
-	gr_test = gr;
-	EXPECT_EQ(false, gr.merge(direction::EAST));
-	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
-
-	// 1 merge in a row
-	setGrid(gr.m_grid,
-		0, 0, 512, 512,
-		0, 4, 2, 2,
-		16, 8, 16, 16,
-		0, 1, 4, 1);
 	setGrid(gr_test.m_grid,
-		0, 0, 0, 1024,
-		0, 4, 0, 4,
-		16, 8, 0, 32,
-		0, 1, 4, 1);
-	EXPECT_EQ(true, gr.merge(direction::EAST));
-	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
-	
-	// 2 merges in a row
-	setGrid(gr.m_grid,
-		1, 2, 4, 8,
-		1, 2, 4, 8,
-		1, 2, 4, 8,
-		1, 2, 4, 8);
-	setGrid(gr_test.m_grid,
-		2, 4, 8, 16,
+		2, 2, 0, 0,
 		0, 0, 0, 0,
-		2, 4, 8, 16,
+		0, 0, 0, 0,
 		0, 0, 0, 0);
 	EXPECT_EQ(true, gr.merge(direction::NORTH));
+	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
+
+	setGrid(gr.m_grid,
+		1, 1, 0, 0,
+		1, 1, 0, 0,
+		0, 0, 0, 0,
+		0, 0, 0, 0);
+	setGrid(gr_test.m_grid,
+		0, 0, 0, 0,
+		2, 2, 0, 0,
+		0, 0, 0, 0,
+		0, 0, 0, 0);
+	EXPECT_EQ(true, gr.merge(direction::SOUTH));
+	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
+
+	setGrid(gr.m_grid,
+		1, 1, 0, 0,
+		1, 1, 0, 0,
+		0, 0, 0, 0,
+		0, 0, 0, 0);
+	setGrid(gr_test.m_grid,
+		0, 2, 0, 0,
+		0, 2, 0, 0,
+		0, 0, 0, 0,
+		0, 0, 0, 0);
+	EXPECT_EQ(true, gr.merge(direction::EAST));
+	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
+
+	setGrid(gr.m_grid,
+		1, 1, 0, 0,
+		1, 1, 0, 0,
+		0, 0, 0, 0,
+		0, 0, 0, 0);
+	setGrid(gr_test.m_grid,
+		2, 0, 0, 0,
+		2, 0, 0, 0,
+		0, 0, 0, 0,
+		0, 0, 0, 0);
+	EXPECT_EQ(true, gr.merge(direction::WEST));
+	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
+
+	setGrid(gr.m_grid,
+		1, 1, 0, 0,
+		1, 1, 0, 0,
+		0, 0, 0, 0,
+		0, 0, 0, 0);
+	setGrid(gr_test.m_grid,
+		1, 1, 0, 0,
+		1, 1, 0, 0,
+		0, 0, 0, 0,
+		0, 0, 0, 0);
+	EXPECT_EQ(false, gr.merge((direction)-1));
 	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
 }
 	
@@ -1295,58 +1254,123 @@ TEST(grid_merge, C1_Coverage)
 	grid gr;
 	grid gr_test;
 
-	// Empty
+	// C0 added
 	setGrid(gr.m_grid,
-		0, 0, 0, 0,
-		0, 0, 0, 0,
+		1, 1, 0, 0,
+		1, 1, 0, 0,
 		0, 0, 0, 0,
 		0, 0, 0, 0);
-	gr_test = gr;
-	EXPECT_EQ(false, gr.merge(direction::NORTH));
-	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
-	EXPECT_EQ(false, gr.merge(direction::SOUTH));
-	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
-	EXPECT_EQ(false, gr.merge(direction::EAST));
-	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
-	EXPECT_EQ(false, gr.merge(direction::WEST));
-	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
-
-	// Not empty, but cannot merge
-	setGrid(gr.m_grid,
-		0, 2, 0, 8,
-		0, 0, 0, 2,
-		8, 0, 2, 1,
-		0, 2, 0, 1);
-	gr_test = gr;
-	EXPECT_EQ(false, gr.merge(direction::EAST));
-	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
-
-	// 1 merge in a row
-	setGrid(gr.m_grid,
-		0, 0, 512, 512,
-		0, 4, 2, 2,
-		16, 8, 16, 16,
-		0, 1, 4, 1);
 	setGrid(gr_test.m_grid,
-		0, 0, 0, 1024,
-		0, 4, 0, 4,
-		16, 8, 0, 32,
-		0, 1, 4, 1);
-	EXPECT_EQ(true, gr.merge(direction::EAST));
-	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
-	
-	// 2 merges in a row
-	setGrid(gr.m_grid,
-		1, 2, 4, 8,
-		1, 2, 4, 8,
-		1, 2, 4, 8,
-		1, 2, 4, 8);
-	setGrid(gr_test.m_grid,
-		2, 4, 8, 16,
+		2, 2, 0, 0,
 		0, 0, 0, 0,
-		2, 4, 8, 16,
+		0, 0, 0, 0,
 		0, 0, 0, 0);
 	EXPECT_EQ(true, gr.merge(direction::NORTH));
+	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
+
+	setGrid(gr.m_grid,
+		1, 1, 0, 0,
+		1, 1, 0, 0,
+		0, 0, 0, 0,
+		0, 0, 0, 0);
+	setGrid(gr_test.m_grid,
+		0, 0, 0, 0,
+		2, 2, 0, 0,
+		0, 0, 0, 0,
+		0, 0, 0, 0);
+	EXPECT_EQ(true, gr.merge(direction::SOUTH));
+	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
+
+	setGrid(gr.m_grid,
+		1, 1, 0, 0,
+		1, 1, 0, 0,
+		0, 0, 0, 0,
+		0, 0, 0, 0);
+	setGrid(gr_test.m_grid,
+		0, 2, 0, 0,
+		0, 2, 0, 0,
+		0, 0, 0, 0,
+		0, 0, 0, 0);
+	EXPECT_EQ(true, gr.merge(direction::EAST));
+	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
+
+	setGrid(gr.m_grid,
+		1, 1, 0, 0,
+		1, 1, 0, 0,
+		0, 0, 0, 0,
+		0, 0, 0, 0);
+	setGrid(gr_test.m_grid,
+		2, 0, 0, 0,
+		2, 0, 0, 0,
+		0, 0, 0, 0,
+		0, 0, 0, 0);
+	EXPECT_EQ(true, gr.merge(direction::WEST));
+	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
+
+	setGrid(gr.m_grid,
+		1, 1, 0, 0,
+		1, 1, 0, 0,
+		0, 0, 0, 0,
+		0, 0, 0, 0);
+	setGrid(gr_test.m_grid,
+		1, 1, 0, 0,
+		1, 1, 0, 0,
+		0, 0, 0, 0,
+		0, 0, 0, 0);
+	EXPECT_EQ(false, gr.merge((direction)-1));
+	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
+
+	// C1 added
+	setGrid(gr.m_grid,
+		1, 2, 0, 0,
+		2, 1, 0, 0,
+		0, 0, 0, 0,
+		0, 0, 0, 0);
+	setGrid(gr_test.m_grid,
+		1, 2, 0, 0,
+		2, 1, 0, 0,
+		0, 0, 0, 0,
+		0, 0, 0, 0);
+	EXPECT_EQ(false, gr.merge(direction::NORTH));
+	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
+
+	setGrid(gr.m_grid,
+		1, 2, 0, 0,
+		2, 1, 0, 0,
+		0, 0, 0, 0,
+		0, 0, 0, 0);
+	setGrid(gr_test.m_grid,
+		1, 2, 0, 0,
+		2, 1, 0, 0,
+		0, 0, 0, 0,
+		0, 0, 0, 0);
+	EXPECT_EQ(false, gr.merge(direction::SOUTH));
+	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
+
+	setGrid(gr.m_grid,
+		1, 2, 0, 0,
+		2, 1, 0, 0,
+		0, 0, 0, 0,
+		0, 0, 0, 0);
+	setGrid(gr_test.m_grid,
+		1, 2, 0, 0,
+		2, 1, 0, 0,
+		0, 0, 0, 0,
+		0, 0, 0, 0);
+	EXPECT_EQ(false, gr.merge(direction::EAST));
+	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
+
+	setGrid(gr.m_grid,
+		1, 2, 0, 0,
+		2, 1, 0, 0,
+		0, 0, 0, 0,
+		0, 0, 0, 0);
+	setGrid(gr_test.m_grid,
+		1, 2, 0, 0,
+		2, 1, 0, 0,
+		0, 0, 0, 0,
+		0, 0, 0, 0);
+	EXPECT_EQ(false, gr.merge(direction::WEST));
 	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
 }
 	
@@ -1355,59 +1379,127 @@ TEST(grid_merge, C2_Coverage)
 	grid gr;
 	grid gr_test;
 
-	// Empty
+	// C0 added
 	setGrid(gr.m_grid,
-		0, 0, 0, 0,
-		0, 0, 0, 0,
+		1, 1, 0, 0,
+		1, 1, 0, 0,
 		0, 0, 0, 0,
 		0, 0, 0, 0);
-	gr_test = gr;
-	EXPECT_EQ(false, gr.merge(direction::NORTH));
-	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
-	EXPECT_EQ(false, gr.merge(direction::SOUTH));
-	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
-	EXPECT_EQ(false, gr.merge(direction::EAST));
-	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
-	EXPECT_EQ(false, gr.merge(direction::WEST));
-	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
-
-	// Not empty, but cannot merge
-	setGrid(gr.m_grid,
-		0, 2, 0, 8,
-		0, 0, 0, 2,
-		8, 0, 2, 1,
-		0, 2, 0, 1);
-	gr_test = gr;
-	EXPECT_EQ(false, gr.merge(direction::EAST));
-	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
-
-	// 1 merge in a row
-	setGrid(gr.m_grid,
-		0, 0, 512, 512,
-		0, 4, 2, 2,
-		16, 8, 16, 16,
-		0, 1, 4, 1);
 	setGrid(gr_test.m_grid,
-		0, 0, 0, 1024,
-		0, 4, 0, 4,
-		16, 8, 0, 32,
-		0, 1, 4, 1);
-	EXPECT_EQ(true, gr.merge(direction::EAST));
-	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
-	
-	// 2 merges in a row
-	setGrid(gr.m_grid,
-		1, 2, 4, 8,
-		1, 2, 4, 8,
-		1, 2, 4, 8,
-		1, 2, 4, 8);
-	setGrid(gr_test.m_grid,
-		2, 4, 8, 16,
+		2, 2, 0, 0,
 		0, 0, 0, 0,
-		2, 4, 8, 16,
+		0, 0, 0, 0,
 		0, 0, 0, 0);
 	EXPECT_EQ(true, gr.merge(direction::NORTH));
 	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
+
+	setGrid(gr.m_grid,
+		1, 1, 0, 0,
+		1, 1, 0, 0,
+		0, 0, 0, 0,
+		0, 0, 0, 0);
+	setGrid(gr_test.m_grid,
+		0, 0, 0, 0,
+		2, 2, 0, 0,
+		0, 0, 0, 0,
+		0, 0, 0, 0);
+	EXPECT_EQ(true, gr.merge(direction::SOUTH));
+	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
+
+	setGrid(gr.m_grid,
+		1, 1, 0, 0,
+		1, 1, 0, 0,
+		0, 0, 0, 0,
+		0, 0, 0, 0);
+	setGrid(gr_test.m_grid,
+		0, 2, 0, 0,
+		0, 2, 0, 0,
+		0, 0, 0, 0,
+		0, 0, 0, 0);
+	EXPECT_EQ(true, gr.merge(direction::EAST));
+	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
+
+	setGrid(gr.m_grid,
+		1, 1, 0, 0,
+		1, 1, 0, 0,
+		0, 0, 0, 0,
+		0, 0, 0, 0);
+	setGrid(gr_test.m_grid,
+		2, 0, 0, 0,
+		2, 0, 0, 0,
+		0, 0, 0, 0,
+		0, 0, 0, 0);
+	EXPECT_EQ(true, gr.merge(direction::WEST));
+	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
+
+	setGrid(gr.m_grid,
+		1, 1, 0, 0,
+		1, 1, 0, 0,
+		0, 0, 0, 0,
+		0, 0, 0, 0);
+	setGrid(gr_test.m_grid,
+		1, 1, 0, 0,
+		1, 1, 0, 0,
+		0, 0, 0, 0,
+		0, 0, 0, 0);
+	EXPECT_EQ(false, gr.merge((direction)-1));
+	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
+
+	// C1 added
+	setGrid(gr.m_grid,
+		1, 2, 0, 0,
+		2, 1, 0, 0,
+		0, 0, 0, 0,
+		0, 0, 0, 0);
+	setGrid(gr_test.m_grid,
+		1, 2, 0, 0,
+		2, 1, 0, 0,
+		0, 0, 0, 0,
+		0, 0, 0, 0);
+	EXPECT_EQ(false, gr.merge(direction::NORTH));
+	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
+
+	setGrid(gr.m_grid,
+		1, 2, 0, 0,
+		2, 1, 0, 0,
+		0, 0, 0, 0,
+		0, 0, 0, 0);
+	setGrid(gr_test.m_grid,
+		1, 2, 0, 0,
+		2, 1, 0, 0,
+		0, 0, 0, 0,
+		0, 0, 0, 0);
+	EXPECT_EQ(false, gr.merge(direction::SOUTH));
+	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
+
+	setGrid(gr.m_grid,
+		1, 2, 0, 0,
+		2, 1, 0, 0,
+		0, 0, 0, 0,
+		0, 0, 0, 0);
+	setGrid(gr_test.m_grid,
+		1, 2, 0, 0,
+		2, 1, 0, 0,
+		0, 0, 0, 0,
+		0, 0, 0, 0);
+	EXPECT_EQ(false, gr.merge(direction::EAST));
+	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
+
+	setGrid(gr.m_grid,
+		1, 2, 0, 0,
+		2, 1, 0, 0,
+		0, 0, 0, 0,
+		0, 0, 0, 0);
+	setGrid(gr_test.m_grid,
+		1, 2, 0, 0,
+		2, 1, 0, 0,
+		0, 0, 0, 0,
+		0, 0, 0, 0);
+	EXPECT_EQ(false, gr.merge(direction::WEST));
+	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
+	
+	// C2 added
+	// Nothing
 }
 	
 TEST(grid_merge, MCDC_Coverage)
@@ -1415,59 +1507,127 @@ TEST(grid_merge, MCDC_Coverage)
 	grid gr;
 	grid gr_test;
 
-	// Empty
+	// C0 added
 	setGrid(gr.m_grid,
-		0, 0, 0, 0,
-		0, 0, 0, 0,
+		1, 1, 0, 0,
+		1, 1, 0, 0,
 		0, 0, 0, 0,
 		0, 0, 0, 0);
-	gr_test = gr;
-	EXPECT_EQ(false, gr.merge(direction::NORTH));
-	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
-	EXPECT_EQ(false, gr.merge(direction::SOUTH));
-	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
-	EXPECT_EQ(false, gr.merge(direction::EAST));
-	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
-	EXPECT_EQ(false, gr.merge(direction::WEST));
-	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
-
-	// Not empty, but cannot merge
-	setGrid(gr.m_grid,
-		0, 2, 0, 8,
-		0, 0, 0, 2,
-		8, 0, 2, 1,
-		0, 2, 0, 1);
-	gr_test = gr;
-	EXPECT_EQ(false, gr.merge(direction::EAST));
-	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
-
-	// 1 merge in a row
-	setGrid(gr.m_grid,
-		0, 0, 512, 512,
-		0, 4, 2, 2,
-		16, 8, 16, 16,
-		0, 1, 4, 1);
 	setGrid(gr_test.m_grid,
-		0, 0, 0, 1024,
-		0, 4, 0, 4,
-		16, 8, 0, 32,
-		0, 1, 4, 1);
-	EXPECT_EQ(true, gr.merge(direction::EAST));
-	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
-	
-	// 2 merges in a row
-	setGrid(gr.m_grid,
-		1, 2, 4, 8,
-		1, 2, 4, 8,
-		1, 2, 4, 8,
-		1, 2, 4, 8);
-	setGrid(gr_test.m_grid,
-		2, 4, 8, 16,
+		2, 2, 0, 0,
 		0, 0, 0, 0,
-		2, 4, 8, 16,
+		0, 0, 0, 0,
 		0, 0, 0, 0);
 	EXPECT_EQ(true, gr.merge(direction::NORTH));
 	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
+
+	setGrid(gr.m_grid,
+		1, 1, 0, 0,
+		1, 1, 0, 0,
+		0, 0, 0, 0,
+		0, 0, 0, 0);
+	setGrid(gr_test.m_grid,
+		0, 0, 0, 0,
+		2, 2, 0, 0,
+		0, 0, 0, 0,
+		0, 0, 0, 0);
+	EXPECT_EQ(true, gr.merge(direction::SOUTH));
+	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
+
+	setGrid(gr.m_grid,
+		1, 1, 0, 0,
+		1, 1, 0, 0,
+		0, 0, 0, 0,
+		0, 0, 0, 0);
+	setGrid(gr_test.m_grid,
+		0, 2, 0, 0,
+		0, 2, 0, 0,
+		0, 0, 0, 0,
+		0, 0, 0, 0);
+	EXPECT_EQ(true, gr.merge(direction::EAST));
+	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
+
+	setGrid(gr.m_grid,
+		1, 1, 0, 0,
+		1, 1, 0, 0,
+		0, 0, 0, 0,
+		0, 0, 0, 0);
+	setGrid(gr_test.m_grid,
+		2, 0, 0, 0,
+		2, 0, 0, 0,
+		0, 0, 0, 0,
+		0, 0, 0, 0);
+	EXPECT_EQ(true, gr.merge(direction::WEST));
+	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
+
+	setGrid(gr.m_grid,
+		1, 1, 0, 0,
+		1, 1, 0, 0,
+		0, 0, 0, 0,
+		0, 0, 0, 0);
+	setGrid(gr_test.m_grid,
+		1, 1, 0, 0,
+		1, 1, 0, 0,
+		0, 0, 0, 0,
+		0, 0, 0, 0);
+	EXPECT_EQ(false, gr.merge((direction)-1));
+	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
+
+	// C1 added
+	setGrid(gr.m_grid,
+		1, 2, 0, 0,
+		2, 1, 0, 0,
+		0, 0, 0, 0,
+		0, 0, 0, 0);
+	setGrid(gr_test.m_grid,
+		1, 2, 0, 0,
+		2, 1, 0, 0,
+		0, 0, 0, 0,
+		0, 0, 0, 0);
+	EXPECT_EQ(false, gr.merge(direction::NORTH));
+	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
+
+	setGrid(gr.m_grid,
+		1, 2, 0, 0,
+		2, 1, 0, 0,
+		0, 0, 0, 0,
+		0, 0, 0, 0);
+	setGrid(gr_test.m_grid,
+		1, 2, 0, 0,
+		2, 1, 0, 0,
+		0, 0, 0, 0,
+		0, 0, 0, 0);
+	EXPECT_EQ(false, gr.merge(direction::SOUTH));
+	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
+
+	setGrid(gr.m_grid,
+		1, 2, 0, 0,
+		2, 1, 0, 0,
+		0, 0, 0, 0,
+		0, 0, 0, 0);
+	setGrid(gr_test.m_grid,
+		1, 2, 0, 0,
+		2, 1, 0, 0,
+		0, 0, 0, 0,
+		0, 0, 0, 0);
+	EXPECT_EQ(false, gr.merge(direction::EAST));
+	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
+
+	setGrid(gr.m_grid,
+		1, 2, 0, 0,
+		2, 1, 0, 0,
+		0, 0, 0, 0,
+		0, 0, 0, 0);
+	setGrid(gr_test.m_grid,
+		1, 2, 0, 0,
+		2, 1, 0, 0,
+		0, 0, 0, 0,
+		0, 0, 0, 0);
+	EXPECT_EQ(false, gr.merge(direction::WEST));
+	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
+
+	// MCDC added
+	// Nothing
 }
 	
 // random_empty_pos()
