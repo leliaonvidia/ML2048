@@ -26,7 +26,13 @@ bin/%_pathtest: obj/%.o obj/%_pathtest.o ${GTEST_LIBS} ${OBJS}
 run: bin/grid_pathtest
 	./bin/grid_pathtest
 
-.PHONY: clean
+.PHONY: coverage clean
+coverage:
+	rm -rf cov
+	mkdir cov
+	gcov -b -o obj src/grid.cpp
+	mv *.gcov cov
+
 clean:
 	rm -f obj/*
 	rm -f bin/*
