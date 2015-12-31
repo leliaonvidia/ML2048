@@ -66,6 +66,7 @@ private:
 	FRIEND_TEST(grid_merge, equivalenceClass);
 	FRIEND_TEST(grid_init, Edge_WeakNormal);
 	FRIEND_TEST(grid_action, EquivalenceClass_WeakNormal);
+	FRIEND_TEST(grid_can_move, equivalenceClass); 
 	FRIEND_TEST(grid_has_empty, Edge_WeakNormal);
 	FRIEND_TEST(grid_largest, BoundaryValue_Robust);
 	FRIEND_TEST(grid_random_empty_pos, Edge_WeakNormal);
