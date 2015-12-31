@@ -70,6 +70,51 @@ private:
 	FRIEND_TEST(grid_largest, BoundaryValue_Robust);
 	FRIEND_TEST(grid_random_empty_pos, Edge_WeakNormal);
 
+	FRIEND_TEST(grid_reset, C0_Coverage);
+	FRIEND_TEST(grid_reset, C1_Coverage);
+	FRIEND_TEST(grid_reset, C2_Coverage);
+	FRIEND_TEST(grid_reset, MCDC_Coverage);
+	FRIEND_TEST(grid_is_outside, C0_Coverage);
+	FRIEND_TEST(grid_is_outside, C1_Coverage);
+	FRIEND_TEST(grid_is_outside, C2_Coverage);
+	FRIEND_TEST(grid_is_outside, MCDC_Coverage);
+	FRIEND_TEST(grid_get, C0_Coverage);
+	FRIEND_TEST(grid_get, C1_Coverage);
+	FRIEND_TEST(grid_get, C2_Coverage);
+	FRIEND_TEST(grid_get, MCDC_Coverage);
+	FRIEND_TEST(grid_set, C0_Coverage);
+	FRIEND_TEST(grid_set, C1_Coverage);
+	FRIEND_TEST(grid_set, C2_Coverage);
+	FRIEND_TEST(grid_set, MCDC_Coverage);
+	FRIEND_TEST(grid_move, C0_Coverage);
+	FRIEND_TEST(grid_move, C1_Coverage);
+	FRIEND_TEST(grid_move, C2_Coverage);
+	FRIEND_TEST(grid_move, MCDC_Coverage);
+	FRIEND_TEST(grid_merge, C0_Coverage);
+	FRIEND_TEST(grid_merge, C1_Coverage);
+	FRIEND_TEST(grid_merge, C2_Coverage);
+	FRIEND_TEST(grid_merge, MCDC_Coverage);
+	FRIEND_TEST(grid_init, C0_Coverage);
+	FRIEND_TEST(grid_init, C1_Coverage);
+	FRIEND_TEST(grid_init, C2_Coverage);
+	FRIEND_TEST(grid_init, MCDC_Coverage);
+	FRIEND_TEST(grid_action, C0_Coverage);
+	FRIEND_TEST(grid_action, C1_Coverage);
+	FRIEND_TEST(grid_action, C2_Coverage);
+	FRIEND_TEST(grid_action, MCDC_Coverage);
+	FRIEND_TEST(grid_has_empty, C0_Coverage);
+	FRIEND_TEST(grid_has_empty, C1_Coverage);
+	FRIEND_TEST(grid_has_empty, C2_Coverage);
+	FRIEND_TEST(grid_has_empty, MCDC_Coverage);
+	FRIEND_TEST(grid_largest, C0_Coverage);
+	FRIEND_TEST(grid_largest, C1_Coverage);
+	FRIEND_TEST(grid_largest, C2_Coverage);
+	FRIEND_TEST(grid_largest, MCDC_Coverage);
+	FRIEND_TEST(grid_random_empty_pos, C0_Coverage);
+	FRIEND_TEST(grid_random_empty_pos, C1_Coverage);
+	FRIEND_TEST(grid_random_empty_pos, C2_Coverage);
+	FRIEND_TEST(grid_random_empty_pos, MCDC_Coverage);
+
     // Sets count values of 2 onto the board in an empty slot
     void init(int count);
 
