@@ -6,9 +6,12 @@ GTEST_LIBS=gtest/lib/lib*.a
 DEPS=include/grid.hpp include/utils.hpp
 OBJS=obj/grid.o obj/utils.o
 
-all: bin/grid_unittest
+all: bin/grid_unittest bin/grid_pathtest
 
 obj/%_unittest.o: test/%_unittest.cpp ${GTEST_INC} ${DEPS}
+	${CXX} -c ${CXXFLAGS} -o $@ $<
+
+obj/%_pathtest.o: test/%_pathtest.cpp ${GTEST_INC} ${DEPS}
 	${CXX} -c ${CXXFLAGS} -o $@ $<
 
 obj/%.o: src/%.cpp ${DEPS}
@@ -17,8 +20,11 @@ obj/%.o: src/%.cpp ${DEPS}
 bin/%_unittest: obj/%.o obj/%_unittest.o ${GTEST_LIBS} ${OBJS}
 	${CXX} ${CXXFLAGS} -o $@ $^ ${LDFLAGS}
 
-run: bin/grid_unittest
-	./bin/grid_unittest
+bin/%_pathtest: obj/%.o obj/%_pathtest.o ${GTEST_LIBS} ${OBJS}
+	${CXX} ${CXXFLAGS} -o $@ $^ ${LDFLAGS}
+
+run: bin/grid_pathtest
+	./bin/grid_pathtest
 
 .PHONY: clean
 clean:
