@@ -106,12 +106,6 @@ bool grid::can_move() const
             // Neighbor check
             int value = m_grid[y][x];
 
-            int north = get(x, y - 1);
-            if(value == north)
-            {
-                return true;
-            }
-
             int south = get(x, y + 1);
             if(value == south)
             {
@@ -120,12 +114,6 @@ bool grid::can_move() const
 
             int east = get(x - 1, y);
             if(value == east)
-            {
-                return true;
-            }
-
-            int west = get(x + 1, y);
-            if(value == west)
             {
                 return true;
             }
