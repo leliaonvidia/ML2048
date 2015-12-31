@@ -308,6 +308,107 @@ TEST(grid_init, MCDC_Coverage) {
     EXPECT_EQ(1, count_diff);                                                            
 }
 
+// add_actions
+TEST(grid_add_actions, C0_Coverage) 
+{
+	grid gr, gr_test;
+	std::vector<direction> actions = {direction::NORTH, direction::SOUTH};
+
+	setGrid(gr.m_grid,
+		0, 2, 2, 2,
+		2, 0, 0, 0,
+		0, 0, 0, 0,
+		0, 0, 0, 0);
+	gr.add_actions(actions);
+}
+
+TEST(grid_add_actions, C1_Coverage) 
+{
+	grid gr, gr_test;
+	std::vector<direction> actions = {direction::NORTH, direction::SOUTH};
+
+	setGrid(gr.m_grid,
+		0, 2, 2, 2,
+		2, 0, 0, 0,
+		0, 0, 0, 0,
+		0, 0, 0, 0);
+	gr.add_actions(actions);
+}
+
+TEST(grid_add_actions, C2_Coverage) 
+{
+	grid gr, gr_test;
+	std::vector<direction> actions = {direction::NORTH, direction::SOUTH};
+
+	setGrid(gr.m_grid,
+		0, 2, 2, 2,
+		2, 0, 0, 0,
+		0, 0, 0, 0,
+		0, 0, 0, 0);
+	gr.add_actions(actions);
+}
+
+TEST(grid_add_actions, MCDC_Coverage) 
+{
+	grid gr, gr_test;
+	std::vector<direction> actions = {direction::NORTH, direction::SOUTH};
+
+	setGrid(gr.m_grid,
+		0, 2, 2, 2,
+		2, 0, 0, 0,
+		0, 0, 0, 0,
+		0, 0, 0, 0);
+	gr.add_actions(actions);
+}
+
+// print()
+TEST(grid_print, C0_Coverage)
+{
+	grid gr;
+
+	setGrid(gr.m_grid,
+		0, 2, 2, 2,
+		2, 0, 0, 0,
+		0, 0, 0, 0,
+		0, 0, 0, 0);
+	gr.print();
+}
+
+TEST(grid_print, C1_Coverage)
+{
+	grid gr;
+
+	setGrid(gr.m_grid,
+		0, 2, 2, 2,
+		2, 0, 0, 0,
+		0, 0, 0, 0,
+		0, 0, 0, 0);
+	gr.print();
+}
+
+TEST(grid_print, C2_Coverage)
+{
+	grid gr;
+
+	setGrid(gr.m_grid,
+		0, 2, 2, 2,
+		2, 0, 0, 0,
+		0, 0, 0, 0,
+		0, 0, 0, 0);
+	gr.print();
+}
+
+TEST(grid_print, MCDC_Coverage)
+{
+	grid gr;
+
+	setGrid(gr.m_grid,
+		0, 2, 2, 2,
+		2, 0, 0, 0,
+		0, 0, 0, 0,
+		0, 0, 0, 0);
+	gr.print();
+}
 // is_outside()
 TEST(grid_is_outside, C0_Coverage) {
 	grid gr;
@@ -463,6 +564,139 @@ TEST(grid_action, MCDC_Coverage) {
 		0, 0, 0, 0,
 		0, 0, 0, 0);
 	EXPECT_EQ(false, G.action(north));
+}
+
+// can_move()
+TEST(grid_can_move, C0_Coverage)
+{
+	grid gr;
+
+	setGrid(gr.m_grid,
+		1, 2, 1, 2,
+		2, 1, 2, 1,
+		1, 2, 1, 2,
+		2, 1, 2, 1);
+	EXPECT_EQ(false, gr.can_move());
+
+	setGrid(gr.m_grid,
+		0, 2, 1, 2,
+		2, 1, 2, 1,
+		1, 2, 1, 2,
+		2, 1, 2, 1);
+	EXPECT_EQ(true, gr.can_move());
+
+	setGrid(gr.m_grid,
+		4, 2, 1, 2,
+		4, 1, 2, 1,
+		1, 2, 1, 2,
+		2, 1, 2, 1);
+	EXPECT_EQ(true, gr.can_move());
+
+	setGrid(gr.m_grid,
+		4, 4, 1, 2,
+		2, 1, 2, 1,
+		1, 2, 1, 2,
+		2, 1, 2, 1);
+	EXPECT_EQ(true, gr.can_move());
+}
+
+TEST(grid_can_move, C1_Coverage)
+{
+	grid gr;
+
+	setGrid(gr.m_grid,
+		1, 2, 1, 2,
+		2, 1, 2, 1,
+		1, 2, 1, 2,
+		2, 1, 2, 1);
+	EXPECT_EQ(false, gr.can_move());
+
+	setGrid(gr.m_grid,
+		0, 2, 1, 2,
+		2, 1, 2, 1,
+		1, 2, 1, 2,
+		2, 1, 2, 1);
+	EXPECT_EQ(true, gr.can_move());
+
+	setGrid(gr.m_grid,
+		4, 2, 1, 2,
+		4, 1, 2, 1,
+		1, 2, 1, 2,
+		2, 1, 2, 1);
+	EXPECT_EQ(true, gr.can_move());
+
+	setGrid(gr.m_grid,
+		4, 4, 1, 2,
+		2, 1, 2, 1,
+		1, 2, 1, 2,
+		2, 1, 2, 1);
+	EXPECT_EQ(true, gr.can_move());
+}
+
+TEST(grid_can_move, C2_Coverage)
+{
+	grid gr;
+
+	setGrid(gr.m_grid,
+		1, 2, 1, 2,
+		2, 1, 2, 1,
+		1, 2, 1, 2,
+		2, 1, 2, 1);
+	EXPECT_EQ(false, gr.can_move());
+
+	setGrid(gr.m_grid,
+		0, 2, 1, 2,
+		2, 1, 2, 1,
+		1, 2, 1, 2,
+		2, 1, 2, 1);
+	EXPECT_EQ(true, gr.can_move());
+
+	setGrid(gr.m_grid,
+		4, 2, 1, 2,
+		4, 1, 2, 1,
+		1, 2, 1, 2,
+		2, 1, 2, 1);
+	EXPECT_EQ(true, gr.can_move());
+
+	setGrid(gr.m_grid,
+		4, 4, 1, 2,
+		2, 1, 2, 1,
+		1, 2, 1, 2,
+		2, 1, 2, 1);
+	EXPECT_EQ(true, gr.can_move());
+}
+
+TEST(grid_can_move, MCDC_Coverage)
+{
+	grid gr;
+
+	setGrid(gr.m_grid,
+		1, 2, 1, 2,
+		2, 1, 2, 1,
+		1, 2, 1, 2,
+		2, 1, 2, 1);
+	EXPECT_EQ(false, gr.can_move());
+
+	setGrid(gr.m_grid,
+		0, 2, 1, 2,
+		2, 1, 2, 1,
+		1, 2, 1, 2,
+		2, 1, 2, 1);
+	EXPECT_EQ(true, gr.can_move());
+
+	setGrid(gr.m_grid,
+		4, 2, 1, 2,
+		4, 1, 2, 1,
+		1, 2, 1, 2,
+		2, 1, 2, 1);
+	EXPECT_EQ(true, gr.can_move());
+
+	setGrid(gr.m_grid,
+		4, 4, 1, 2,
+		2, 1, 2, 1,
+		1, 2, 1, 2,
+		2, 1, 2, 1);
+	EXPECT_EQ(true, gr.can_move());
 }
 
 // has_empty()
@@ -662,6 +896,39 @@ TEST(grid_set, MCDC_Coverage) {
 	EXPECT_EQ(true, isMGridEqual(gr_test.m_grid, gr.m_grid));
 }
 
+// score()
+TEST(grid_score, C0_Coverage) 
+{
+	grid gr;
+	
+	gr.m_score = 1;
+	EXPECT_EQ(1, gr.score());
+}
+
+TEST(grid_score, C1_Coverage) 
+{
+	grid gr;
+	
+	gr.m_score = 1;
+	EXPECT_EQ(1, gr.score());
+}
+
+TEST(grid_score, C2_Coverage) 
+{
+	grid gr;
+	
+	gr.m_score = 1;
+	EXPECT_EQ(1, gr.score());
+}
+
+TEST(grid_score, MCDC_Coverage) 
+{
+	grid gr;
+	
+	gr.m_score = 1;
+	EXPECT_EQ(1, gr.score());
+}
+
 // largest()
 TEST(grid_largest, C0_Coverage) {
 	grid g;
@@ -732,6 +999,68 @@ TEST(grid_largest, MCDC_Coverage) {
 	EXPECT_EQ(0, g.largest());			// L
 	set_all_max(g.m_grid);
 	EXPECT_EQ(int_max, g.largest());	// U
+}
+
+// size()
+TEST(grid_size, C0_Coverage)
+{
+	grid gr;
+	
+	EXPECT_EQ(grid_size, gr.size());
+}
+
+TEST(grid_size, C1_Coverage)
+{
+	grid gr;
+	
+	EXPECT_EQ(grid_size, gr.size());
+}
+
+TEST(grid_size, C2_Coverage)
+{
+	grid gr;
+	
+	EXPECT_EQ(grid_size, gr.size());
+}
+
+TEST(grid_size, MCDC_Coverage)
+{
+	grid gr;
+	
+	EXPECT_EQ(grid_size, gr.size());
+}
+
+// actions
+TEST(grid_actions, C0_Coverage)
+{
+	grid gr;
+	
+	gr.m_actions = std::vector<direction>();
+	EXPECT_EQ(std::vector<direction>(), gr.actions());
+}
+
+TEST(grid_actions, C1_Coverage)
+{
+	grid gr;
+	
+	gr.m_actions = std::vector<direction>();
+	EXPECT_EQ(std::vector<direction>(), gr.actions());
+}
+
+TEST(grid_actions, C2_Coverage)
+{
+	grid gr;
+	
+	gr.m_actions = std::vector<direction>();
+	EXPECT_EQ(std::vector<direction>(), gr.actions());
+}
+
+TEST(grid_actions, MCDC_Coverage)
+{
+	grid gr;
+	
+	gr.m_actions = std::vector<direction>();
+	EXPECT_EQ(std::vector<direction>(), gr.actions());
 }
 
 // move()
@@ -1694,6 +2023,7 @@ TEST(grid_random_empty_pos, MCDC_Coverage) {
 int main(int argc, char **argv)
 {
 	::testing::InitGoogleTest(&argc, argv);
+	::testing::GTEST_FLAG(filter) = "*.C0_Coverage";
 	return RUN_ALL_TESTS();
 }
 
