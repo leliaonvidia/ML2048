@@ -3,6 +3,66 @@
 #include "utils.hpp"
 #include "gtest/gtest.h"
 
+void set_all_one(int m_grid[grid_size][grid_size]) {
+	for(int i = 0; i < grid_size; i++) {
+		for(int j = 0; j < grid_size; j++) {
+			m_grid[i][j] = 1;
+		}
+	}
+}
+
+void set_all_minus_one(int m_grid[grid_size][grid_size]) {
+	for(int i = 0; i < grid_size; i++) {
+		for(int j = 0; j < grid_size; j++) {
+			m_grid[i][j] = -1;
+		}
+	}
+}
+
+void set_all_max(int m_grid[grid_size][grid_size]) {
+	int int_max = std::numeric_limits<int>::max();
+	for(int i = 0; i < grid_size; i++) {
+		for(int j = 0; j < grid_size; j++) {
+			m_grid[i][j] = int_max;
+		}
+	}
+}
+
+bool isMGridEqual(int m_grid1[][grid_size], int m_grid2[][grid_size])
+{
+	for (int i = 0; i < grid_size; i++) {
+		for (int j = 0; j < grid_size; j++) {
+			if (m_grid1[i][j] != m_grid2[i][j])
+				return false;
+		}
+	}
+	return true;
+}
+
+void setGrid(int grid[][grid_size],
+	int n0, int n1, int n2, int n3,
+	int n4, int n5, int n6, int n7,
+	int n8, int n9, int n10, int n11,
+	int n12, int n13, int n14, int n15)
+{
+	grid[0][0] = n0;
+	grid[0][1] = n1;
+	grid[0][2] = n2;
+	grid[0][3] = n3;
+	grid[1][0] = n4;
+	grid[1][1] = n5;
+	grid[1][2] = n6;
+	grid[1][3] = n7;
+	grid[2][0] = n8;
+	grid[2][1] = n9;
+	grid[2][2] = n10;
+	grid[2][3] = n11;
+	grid[3][0] = n12;
+	grid[3][1] = n13;
+	grid[3][2] = n14;
+	grid[3][3] = n15;
+}
+
 // reset()
 TEST(grid_reset, test) {
 	grid gr;
@@ -89,31 +149,6 @@ TEST(grid_is_outside, edgeTest) {
 	EXPECT_EQ(true, gr.is_outside(grid_size, 1));
 }
 
-
-void setGrid(int grid[][grid_size],
-	int n0, int n1, int n2, int n3,
-	int n4, int n5, int n6, int n7,
-	int n8, int n9, int n10, int n11,
-	int n12, int n13, int n14, int n15)
-{
-	grid[0][0] = n0;
-	grid[0][1] = n1;
-	grid[0][2] = n2;
-	grid[0][3] = n3;
-	grid[1][0] = n4;
-	grid[1][1] = n5;
-	grid[1][2] = n6;
-	grid[1][3] = n7;
-	grid[2][0] = n8;
-	grid[2][1] = n9;
-	grid[2][2] = n10;
-	grid[2][3] = n11;
-	grid[3][0] = n12;
-	grid[3][1] = n13;
-	grid[3][2] = n14;
-	grid[3][3] = n15;
-}
-
 // action()
 TEST(grid_action, EquivalenceClass_WeakNormal) {
 
@@ -145,7 +180,6 @@ TEST(grid_action, EquivalenceClass_WeakNormal) {
 		0, 0, 0, 0);
 	EXPECT_EQ(true, G.action(north));
 
-	
 	//Can't move at first but can merge
 	setGrid(G.m_grid,
 		2, 2, 2, 2,
@@ -155,34 +189,47 @@ TEST(grid_action, EquivalenceClass_WeakNormal) {
 	EXPECT_EQ(true, G.action(north));
 }
 
-void set_all_one(int m_grid[grid_size][grid_size]) {
-	for(int i = 0; i < grid_size; i++) {
-		for(int j = 0; j < grid_size; j++) {
-			m_grid[i][j] = 1;
-		}
-	}
-}
 
-void set_all_minus_one(int m_grid[grid_size][grid_size]) {
-	for(int i = 0; i < grid_size; i++) {
-		for(int j = 0; j < grid_size; j++) {
-			m_grid[i][j] = -1;
-		}
-	}
-}
+TEST(grid_can_move, equivalenceClass) {
+	//can move
+	grid G;
 
-void set_all_max(int m_grid[grid_size][grid_size]) {
-	int int_max = std::numeric_limits<int>::max();
-	for(int i = 0; i < grid_size; i++) {
-		for(int j = 0; j < grid_size; j++) {
-			m_grid[i][j] = int_max;
-		}
-	}
+    //have empty space 
+    setGrid(G.m_grid,
+        2, 2, 2, 0,
+        2, 2, 2, 0,
+        2, 2, 2, 0,
+        2, 2, 2, 0);
+    EXPECT_EQ(true, G.can_move());
+
+    //have no empty space but can merge
+	set_all_one(G.m_grid);
+    EXPECT_EQ(true, G.can_move());
+
+	//can not move
+	setGrid(G.m_grid,
+		2, 4, 2, 4,
+		4, 2, 4, 2,
+		2, 4, 2, 4,
+     	4, 2, 4, 2);
+	EXPECT_EQ(false, G.can_move());
+	grid G_ori = G;
+	G.action(direction::NORTH);
+	EXPECT_EQ(true, isMGridEqual(G.m_grid, G_ori.m_grid));
+	G.action(direction::SOUTH);
+	EXPECT_EQ(true, isMGridEqual(G.m_grid, G_ori.m_grid));
+	G.action(direction::EAST);
+	EXPECT_EQ(true, isMGridEqual(G.m_grid, G_ori.m_grid));
+	G.action(direction::WEST);
+	EXPECT_EQ(true, isMGridEqual(G.m_grid, G_ori.m_grid));
 }
 
 // has_empty()
 TEST(grid_has_empty, Edge_WeakNormal) {
 	grid g;
+	// Class: No zero
+	set_all_one(g.m_grid);
+	EXPECT_EQ(false, g.has_empty());
 	// Class: One zero
 	set_all_one(g.m_grid);
 	g.m_grid[0][0] = 0;
@@ -240,16 +287,6 @@ TEST(grid_get, boundaryTest) {
 	EXPECT_EQ(-1, gr.get(grid_size, 1));
 }
 
-bool isMGridEqual(int m_grid1[][grid_size], int m_grid2[][grid_size])
-{
-	for (int i = 0; i < grid_size; i++) {
-		for (int j = 0; j < grid_size; j++) {
-			if (m_grid1[i][j] != m_grid2[i][j])
-				return false;
-		}
-	}
-	return true;
-}
 
 // set()
 TEST(grid_set, boundaryTest) {

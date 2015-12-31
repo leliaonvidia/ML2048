@@ -185,7 +185,7 @@ unsigned int grid::score() const
 // Find the largest
 int grid::largest() const
 {
-    int num = 0;
+    int num = m_grid[0][0];
     for(int x = 0; x < grid_size; ++x)
     {
         for(int y = 0; y < grid_size; ++y)
